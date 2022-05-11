@@ -1,0 +1,22 @@
+.inner-label-wrap {
+  position:relative;
+}
+.inner-label-wrap input {
+  padding-top: 1.3em;
+}
+.inner-label-wrap input::placeholder {
+  opacity:0;
+}
+.inner-label {
+  position:absolute;
+  top:.9em;
+  left:1.5em;
+  color:var(--text-clr);
+  white-space: nowrap;
+  transition: .3s ease-out;
+  transform-origin: 0 0;
+}
+.inner-label-wrap input:focus + .inner-label,
+.inner-label-wrap input:not(:placeholder-shown) + .inner-label {
+  transform: scale(.8) translate(-.3em, -.9em);
+}

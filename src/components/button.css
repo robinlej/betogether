@@ -1,0 +1,32 @@
+.btn {
+  padding: .5em 1em;
+  width: fit-content;
+  font-weight: 700;
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--btn-border-color);
+  background-color: var(--btn-color);
+  border-radius: 5px;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: .3s ease-out;
+  cursor:pointer;
+}
+
+.btn-primary {
+  --btn-color: var(--accent-clr);
+  --btn-border-color: var(--accent-clr);
+  --text-color: #fff;
+}
+
+.btn-secondary {
+  --btn-color: var(--secondary-clr);
+  --btn-border-color: var(--secondary-clr);
+  --text-color: #fff;
+}
+
+.btn-secondary-outline {
+  --btn-color: transparent;
+  --btn-border-color: var(--secondary-clr);
+  --text-color: #fff;
+}
