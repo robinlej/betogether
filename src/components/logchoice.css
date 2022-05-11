@@ -1,0 +1,79 @@
+.log-choice {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  margin-block: auto;
+  color: var(--contrast-clr);
+  background-color: var(--blue-600);
+}
+
+.log-choice--container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+  padding: 4rem;
+}
+
+.log-choice--container p {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.log-choice--signup {
+  left: 50%;
+}
+
+.log-choice--login {
+    left: 0;
+}
+
+.log-choice::before,
+.log-choice::after {
+  transition: .3s ease-in;
+}
+
+.log-choice.login::before,
+.log-choice.login::after,
+.log-choice.signup::before,
+.log-choice.signup::after {
+  content:'';
+  position:absolute;
+  transform: rotateX(-20deg) rotateY(15deg) rotateZ(-15deg) skewX(40deg);
+  background-color:var(--secondary-clr);
+}
+
+.log-choice.login::before {
+  left:30%;
+  top:15%;
+  width:30%;
+  height:40%;
+  opacity: .35;
+}
+
+.log-choice.login::after {
+  left:35%;
+  top:35%;
+  width:30%;
+  height:60%;
+  opacity: .46;
+}
+
+.log-choice.signup::before {
+  left:40%;
+  top:15%;
+  width:30%;
+  height:40%;
+  opacity: .35;
+}
+
+.log-choice.signup::after {
+  left:35%;
+  top:30%;
+  width:40%;
+  height:60%;
+  opacity: .46;
+}

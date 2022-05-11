@@ -1,0 +1,7 @@
+.log-container {
+  position: relative;
+  display: flex;
+  width: min(70%, 1050px);
+  height: 450px;
+  margin: auto;
+}

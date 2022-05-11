@@ -1,16 +1,18 @@
 .inner-label-wrap {
   position:relative;
+  display:flex;
 }
 .inner-label-wrap input {
-  padding-top: 1.3em;
+  padding: .5em 1em;
+  border: 1px solid var(--secondary-clr);
 }
 .inner-label-wrap input::placeholder {
   opacity:0;
 }
 .inner-label {
   position:absolute;
-  top:.9em;
-  left:1.5em;
+  left:1em;
+  align-self:center;
   color:var(--text-clr);
   white-space: nowrap;
   transition: .3s ease-out;
@@ -18,5 +20,7 @@
 }
 .inner-label-wrap input:focus + .inner-label,
 .inner-label-wrap input:not(:placeholder-shown) + .inner-label {
-  transform: scale(.8) translate(-.3em, -.9em);
+  transform: scale(.8) translate(-.7em, -1.35em);
+  padding: 0 .5em;
+  background-color: var(--contrast-clr);
 }

@@ -47,11 +47,7 @@ const LogForm = ({ isLogin }) => {
     </form>
   )
 
-  return (
-    <div>
-      {innerForm}
-    </div>
-  )
+  return innerForm
 }
 
 export default LogForm

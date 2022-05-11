@@ -3,7 +3,10 @@
 :root {
   --accent-clr: #EE964B;
   --secondary-clr: #63C3D1;
-  --bg-clr: #011322;
+  --blue-600: #133D60;
+  --blue-700: #0B253A;
+  --blue-900: #011322;
+  --bg-clr: var(--blue-900);
   --contrast-clr: #fff;
   --text-clr: #000;
 }
@@ -15,4 +18,10 @@
 
 body {
   font-family: 'Titillium Web', Arial, sans-serif;
+}
+
+.App {
+  min-height: 100vh;
+  background-color: var(--bg-clr);
+  display: grid;
 }
