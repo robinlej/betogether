@@ -1,6 +1,6 @@
 import Button from './Button'
 import InnerLabelInput from './InnerLabelInput'
-import './logform.css'
+import './stylesheets/logform.css'
 
 const LogForm = ({ isLogin }) => {
 
@@ -20,7 +20,7 @@ const LogForm = ({ isLogin }) => {
       <InnerLabelInput name='password' type='password'>
         Password
       </InnerLabelInput>
-      <Button className='btn-secondary' handleClick={login}>
+      <Button className='btn-secondary log-form--button' handleClick={login}>
         Login
       </Button>
     </form>
@@ -41,7 +41,7 @@ const LogForm = ({ isLogin }) => {
       <InnerLabelInput name='confirmpassword' type='password'>
         Confirm your password
       </InnerLabelInput>
-      <Button className='btn-secondary' handleClick={signup}>
+      <Button className='btn-secondary log-form--button' handleClick={signup}>
         Register
       </Button>
     </form>

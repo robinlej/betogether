@@ -47,7 +47,7 @@
 }
 
 .log-choice.login::before {
-  left:30%;
+  left:28%;
   top:15%;
   width:30%;
   height:40%;
@@ -55,7 +55,7 @@
 }
 
 .log-choice.login::after {
-  left:35%;
+  left:32%;
   top:35%;
   width:30%;
   height:60%;
@@ -63,7 +63,7 @@
 }
 
 .log-choice.signup::before {
-  left:40%;
+  left:41%;
   top:15%;
   width:30%;
   height:40%;
@@ -71,7 +71,7 @@
 }
 
 .log-choice.signup::after {
-  left:35%;
+  left:37%;
   top:30%;
   width:40%;
   height:60%;

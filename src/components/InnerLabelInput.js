@@ -1,4 +1,4 @@
-import './innerlabelinput.css'
+import './stylesheets/innerlabelinput.css'
 
 const InnerLabelInput = ({ children, name, type }) => {
 

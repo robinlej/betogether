@@ -1,5 +1,5 @@
 import Button from "./Button"
-import './logchoice.css'
+import './stylesheets/logchoice.css'
 
 const LogChoice = ({ isLogin, switchLogOption }) => {
 
