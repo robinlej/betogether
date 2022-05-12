@@ -1,6 +1,7 @@
 import { useState } from "react";
 import LogChoice from "./LogChoice";
 import LogForm from "./LogForm";
+import './stylesheets/logcontainer.css'
 
 const LogContainer = () => {
   const [isLogin, setIsLogin] = useState(true)

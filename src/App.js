@@ -6,7 +6,8 @@ function App() {
   return (
     <Router>
     <div className="App">
-      {/* <LogContainer /> */}
+      {/*<img className='home-logo' src='assets/img/logo-becode.png' alt='BeCode logo with the motto "In code we trust"' />
+      <LogContainer /> */}
       <StudentProfilePage />
     </div>
     </Router>

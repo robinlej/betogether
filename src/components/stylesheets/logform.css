@@ -1,0 +1,28 @@
+.log-form {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  height: 100%;
+  width: 40%;
+  padding: 2rem;
+  background-color: var(--contrast-clr);
+  transition: left .5s ease-out;
+}
+
+.log-form--login {
+  left: 10%;
+  padding-top: 5rem;
+  padding-bottom: 8rem;
+}
+
+.log-form--signup {
+  left: 50%;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.log-form--button {
+  margin-top: auto;
+}
