@@ -1,17 +1,13 @@
+import { Link } from 'react-router-dom'
 import Button from './Button'
 import DropdownMenu from './DropdownMenu'
 import InnerLabelInput from './InnerLabelInput'
 import './stylesheets/logform.css'
 
 const LogForm = ({ isLogin }) => {
+  const login = () => {}
 
-  const login = () => {
-
-  }
-
-  const signup = () => {
-
-  }
+  const signup = () => {}
 
   const innerForm = isLogin ? (
     <form method='POST' action='' className='log-form log-form--login'>
@@ -21,9 +17,11 @@ const LogForm = ({ isLogin }) => {
       <InnerLabelInput name='password' type='password' key='password'>
         Password
       </InnerLabelInput>
-      <Button className='btn-secondary log-form--button' handleClick={login}>
-        Login
-      </Button>
+      <Link to='/profile'>
+        <Button className='btn-secondary log-form--button' handleClick={login}>
+          Login
+        </Button>
+      </Link>
     </form>
   ) : (
     <form method='POST' action='' className='log-form log-form--signup'>
