@@ -4,9 +4,10 @@ import { IoExitOutline } from "react-icons/io5";
 
 export const Nav = styled.nav`
   background: #092b47;
-  height: 10vh;
+  height: min(15vh, 150px);
   display: flex;
   justify-content: space-between;
+  align-items:center;
   padding: 0.5rem;
   z-index: 10;
 `;

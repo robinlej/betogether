@@ -1,0 +1,39 @@
+.outer-label-wrap {
+  display:flex;
+  flex-direction: column;
+  gap:.5rem;
+}
+
+.outer-label-wrap input:not([type='file']),
+.outer-label-wrap textarea {
+  padding: .8em 1.6em;
+  font-size:.9rem;
+}
+
+.outer-label {
+  font-weight: bold;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: var(--secondary-clr);
+  color:white;
+  border-radius:5px;
+  font-size:1rem;
+  font-family: inherit;
+  border:none;
+  padding: .8rem 1.6rem .8rem 3rem;
+}
+
+.outer-label-file-wrap {
+  position: relative;
+  display:flex;
+}
+
+.outer-label-file-wrap::before {
+  content: url("data:image/svg+xml,%3Csvg width='24' height='24' stroke-width='1.5' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 20L18 20' stroke='white' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M12 16V4M12 4L15.5 7.5M12 4L8.5 7.5' stroke='white' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+  position:absolute;
+  left:1.2em;
+  top:.5em;
+  align-self:center;
+  color:white;
+}

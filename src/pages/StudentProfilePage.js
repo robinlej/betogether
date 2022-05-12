@@ -4,7 +4,7 @@ import {
   UploadImg,
   PageBackground,
 } from "../components/StudentProfilePageComponents";
-import StudentProfileHeader from "../components/StudentProfileHeader";
+import StudentHeader from "../components/StudentHeader";
 import background from "../assets/Website_background.png";
 import "./StudentProfilePage.css";
 
@@ -23,7 +23,7 @@ function StudentProfilePage() {
 
   return (
     <PageBackground>
-      <StudentProfileHeader />
+      <StudentHeader page='profile' />
       <div className="student-profile-maintext">
         <h1> My profile</h1>
         <p> Welcome Jane</p>

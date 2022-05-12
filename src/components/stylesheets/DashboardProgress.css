@@ -1,0 +1,57 @@
+.dashboard-progress {
+  --gap: 1em;
+  display: flex;
+  gap: var(--gap);
+}
+
+.dashboard-progress--step {
+  --width: 6rem;
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  font-size:1rem;
+  gap: .5em;
+  color:rgba(255 255 255 / .6);
+  font-weight:bold;
+  width:var(--width);
+}
+
+.dashboard-progress--step--number {
+  --border-width: 2px;
+  --number-width: 32px;
+  position: relative;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  width:var(--number-width);
+  aspect-ratio: 1;
+  background-color: transparent;
+  border-radius:50%;
+  border: var(--border-width) solid var(--secondary-clr);
+}
+
+.dashboard-progress--step.active .dashboard-progress--step--number {
+  background-color: var(--secondary-clr);
+  color:var(--blue-700);
+
+}
+
+.dashboard-progress--step.active .dashboard-progress--step--label {
+  color:var(--contrast-clr);
+}
+
+.dashboard-progress--step:not(:last-of-type) .dashboard-progress--step--number::after {
+  --total-shift: calc(100% + var(--border-width));
+  content:'';
+  background-color: var(--secondary-clr);
+  height: var(--border-width);
+  width: calc(var(--width) - var(--total-shift) + var(--gap));
+  position:absolute;
+  left:var(--total-shift);
+}
+
+.dashboard-progress--step--label {
+  width: var(--width);
+  font-size: .75rem;
+  text-align:center;
+}

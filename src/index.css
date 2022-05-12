@@ -30,3 +30,14 @@ body {
   place-self:center;
   max-height: min(25vh, calc(100vh - 500px));
 }
+
+main {
+  color:var(--contrast-clr);
+}
+
+main h1 {
+  margin-block: 1em;
+  text-align: center;
+  color: rgba(255 255 255 / .6);
+  font-size: 3rem;
+}
