@@ -1,17 +1,26 @@
-// import LogContainer from './components/LogContainer.js'
+import Login from './pages/Login.js'
 import StudentProfilePage from './pages/StudentProfilePage.js'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <Router>
-    <div className="App">
-      {/*<img className='home-logo' src='assets/img/logo-becode.png' alt='BeCode logo with the motto "In code we trust"' />
-      <LogContainer /> */}
-      <StudentProfilePage />
+    <div className='App'>
+      <Router>
+        <Routes>
+          <Route
+            path='/'
+            exact
+            element={ <Login /> }
+          />
+          <Route
+            path='/profile'
+            exact
+            element={ <StudentProfilePage /> }
+          />
+        </Routes>
+      </Router>
     </div>
-    </Router>
-  );
+  )
 }
 
 export default App;
