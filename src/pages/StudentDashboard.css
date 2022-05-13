@@ -22,3 +22,26 @@
 .dashboard-add-project--form button:last-child {
   align-self:end;
 }
+
+.main-with-aside {
+  --aside-width: max(calc(120px + 4rem), 10vw);
+  display: grid;
+  grid-template-columns: var(--aside-width) calc(100vw - (2 * var(--aside-width))) var(--aside-width);
+  grid-template-rows: max-content 1fr;
+}
+
+.main-with-aside h1 {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.main-with-aside__main-content {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.main-with-aside aside {
+  grid-row: 1 / -1;
+  grid-column: 3;
+  padding-top: 4rem;
+}

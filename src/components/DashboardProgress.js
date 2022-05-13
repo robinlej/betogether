@@ -1,22 +1,22 @@
 import DashboardProgressStep from './DashboardProgressStep'
 import './stylesheets/DashboardProgress.css'
 
-const DashboardProgress = () => {
+const DashboardProgress = ({ step }) => {
   return (
-    <div class='dashboard-progress'>
-      <DashboardProgressStep active={true} number={1}>
+    <div className='dashboard-progress'>
+      <DashboardProgressStep step={step} number={1}>
         Create a new project
       </DashboardProgressStep>
-      <DashboardProgressStep number={2}>
+      <DashboardProgressStep step={step} number={2}>
         Wait for other projects
       </DashboardProgressStep>
-      <DashboardProgressStep number={3}>
+      <DashboardProgressStep step={step} number={3}>
         Vote for the projects
       </DashboardProgressStep>
-      <DashboardProgressStep number={4}>
+      <DashboardProgressStep step={step} number={4}>
         Wait for all the votes
       </DashboardProgressStep>
-      <DashboardProgressStep number={5}>
+      <DashboardProgressStep step={step} number={5}>
         Consult the results
       </DashboardProgressStep>
     </div>
