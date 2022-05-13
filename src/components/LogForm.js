@@ -17,7 +17,7 @@ const LogForm = ({ isLogin }) => {
       <InnerLabelInput name='password' type='password' key='password'>
         Password
       </InnerLabelInput>
-      <Link to='/profile'>
+      <Link to='/welcome'>
         <Button className='btn-secondary log-form--button' handleClick={login}>
           Login
         </Button>
