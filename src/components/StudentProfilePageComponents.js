@@ -1,7 +1,7 @@
 
 import { HiOutlineUpload } from "react-icons/hi";
 import styled from "styled-components";
-import background from "../assets/Website_background.png";
+// import background from "../assets/Website_background.png";
 
 export const ProfileImageUpload = styled.div`
   color: white;
@@ -23,10 +23,10 @@ export const StudentProfileText = styled.div`
   margin: 48px;
 `
 
-export const PageBackground = styled.div`
-  background-image: url(${background});
-  height: 100vh;
-`
+// export const PageBackground = styled.div`
+//   background-image: url(${background});
+//   height: 100vh;
+// `
 
 export const UploadBtn = styled.div`
   border-radius: 5px;

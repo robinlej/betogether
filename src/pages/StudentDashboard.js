@@ -1,5 +1,4 @@
 import React from "react";
-import { PageBackground } from "../components/StudentProfilePageComponents";
 import Button from '../components/Button'
 import OuterLabelInput from '../components/OuterLabelInput'
 import OuterLabelFileInput from '../components/OuterLabelFileInput'
@@ -10,7 +9,7 @@ import "../stylesheets/utils.css"
 
 function StudentDashboard() {
   return (
-    <PageBackground>
+    <>
       <StudentHeader page='dashboard' />
       <main>
         <h1>Group Project Name</h1>
@@ -42,7 +41,7 @@ function StudentDashboard() {
           </form>
         </section>
       </main>
-    </PageBackground>
+    </>
   )
 }
 
