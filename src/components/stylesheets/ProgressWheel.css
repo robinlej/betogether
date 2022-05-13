@@ -1,0 +1,39 @@
+.progress-wheel {
+  text-align:center;
+  margin-right: 2rem;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  font-weight:bold;
+  /* position: relative;
+  top: -100px; */
+}
+
+.progress-wheel--number {
+  width: min(100%, 120px);
+  aspect-ratio:1;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--blue-700);
+  border-radius:50%;
+  position:relative;
+}
+
+.progress-wheel--number svg {
+  fill: none;
+  position:absolute;
+}
+
+.progress-wheel--number svg circle {
+  stroke: var(--secondary-clr);
+  stroke-width: 4px;
+  stroke-dasharray: 378; /* max 378 */
+  /* stroke-dashoffset: 37.8; */
+  position:relative;
+}
+
+.progress-wheel--number svg circle#circle-glow {
+  filter: blur(2px);
+}

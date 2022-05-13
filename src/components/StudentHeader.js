@@ -6,14 +6,14 @@ import UserProfilePreview from './UserProfilePreview'
 import logo from "../assets/logo-becode.png";
 import { UploadBtn } from "./StudentProfilePageComponents";
 
-function StudentHeader({page}) {
+function StudentHeader({ page, step }) {
   return (
     <>
       <Nav>
         <NavLink to="/welcome">
           <img src={logo} style={{"height": "5rem"}} alt="Logo" />
         </NavLink>
-        { page === 'dashboard' && <DashboardProgress />}
+        { page === 'dashboard' && <DashboardProgress step={step} />}
         <div style={{"display":"flex", "gap":"4rem"}}>
         { (page !== 'profile' && page !== 'welcome') && <UserProfilePreview name="Jane Doe" promotion='Johnson 7' /> }
         <NavBtn>

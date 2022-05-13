@@ -1,46 +1,39 @@
-import React from "react";
-import Button from '../components/Button'
-import OuterLabelInput from '../components/OuterLabelInput'
-import OuterLabelFileInput from '../components/OuterLabelFileInput'
-import OuterLabelTextarea from "../components/OuterLabelTextarea";
+import React, { useState } from 'react'
 import StudentHeader from "../components/StudentHeader";
+import DashboardStep1 from "./DashboardStep1"
+import DashboardStep2 from './DashboardStep2'
+import DashboardStep3 from './DashboardStep3'
+import DashboardStep4 from './DashboardStep4'
+import DashboardStep5 from './DashboardStep5'
 import "./StudentDashboard.css";
 import "../stylesheets/utils.css"
 
 function StudentDashboard() {
+  const [step, setStep] = useState(1)
+
+  const nextPage = () => {
+    setStep(step + 1)
+  }
+
+  const setDashboardScreen = (step) => {
+    switch(step) {
+      case 1:
+        return <DashboardStep1 nextPage={nextPage} />
+      case 2:
+        return <DashboardStep2 nextPage={nextPage} />
+      case 3:
+        return <DashboardStep3 nextPage={nextPage} />
+      case 4:
+        return <DashboardStep4 nextPage={nextPage} />
+      case 5:
+        return <DashboardStep5 nextPage={nextPage} />
+    }
+  }
+
   return (
     <>
-      <StudentHeader page='dashboard' />
-      <main>
-        <h1>Group Project Name</h1>
-        <section className='dashboard-add-project'>
-          <h2 className='banner-title'>Add Your Project</h2>
-          <form
-            method='POST'
-            action='/'
-            className='dashboard-add-project--form'
-          >
-            <OuterLabelInput name='project-title' type='text'>
-              Your Project's Title *
-            </OuterLabelInput>
-            <OuterLabelTextarea name='description' rows={8}>
-              Description *
-            </OuterLabelTextarea>
-            <div className='flex'>
-              <OuterLabelFileInput name='mockup' accept='image/*'>
-                Add a Mockup
-              </OuterLabelFileInput>
-              <OuterLabelFileInput name='db-schema' accept='image/*'>
-                Add a Database Schema
-              </OuterLabelFileInput>
-            </div>
-            <OuterLabelInput name='links' type='text'>
-              Add Links
-            </OuterLabelInput>
-            <Button className='btn-primary'>Submit</Button>
-          </form>
-        </section>
-      </main>
+      <StudentHeader page='dashboard' step={step} />
+      {setDashboardScreen(step)}
     </>
   )
 }
