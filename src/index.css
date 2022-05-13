@@ -23,7 +23,11 @@ body {
 .App {
   min-height: 100vh;
   background-color: var(--bg-clr);
-  display: grid;
+  background-image: url('../public/assets/img/bg-shape1.svg'), url('../public/assets/img/bg-shape2.svg');
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-size: contain;
+  background-attachment: fixed;
 }
 
 .home-logo {
@@ -33,6 +37,7 @@ body {
 
 main {
   color:var(--contrast-clr);
+  padding-bottom: 2rem;
 }
 
 main h1 {
