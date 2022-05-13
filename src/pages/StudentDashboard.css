@@ -24,7 +24,7 @@
 }
 
 .main-with-aside {
-  --aside-width: max(calc(120px + 4rem), 10vw);
+  --aside-width: max(calc(120px + 4rem), calc((100vw - 1050px) / 2));
   display: grid;
   grid-template-columns: var(--aside-width) calc(100vw - (2 * var(--aside-width))) var(--aside-width);
   grid-template-rows: max-content 1fr;
@@ -44,4 +44,6 @@
   grid-row: 1 / -1;
   grid-column: 3;
   padding-top: 4rem;
+  width: fit-content;
+  margin-left: 1rem;
 }
