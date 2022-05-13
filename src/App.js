@@ -7,20 +7,12 @@ function App() {
     <div className='App'>
       <Router>
         <Routes>
-          <Route
-            path='/'
-            exact
-            element={ <Login /> }
-          />
-          <Route
-            path='/profile'
-            exact
-            element={ <StudentProfilePage /> }
-          />
+          <Route path='/' exact element={<Login />} />
+          <Route path='/profile' exact element={<StudentProfilePage />} />
         </Routes>
       </Router>
     </div>
   )
 }
 
-export default App;
+export default App

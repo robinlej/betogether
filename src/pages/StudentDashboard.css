@@ -1,0 +1,25 @@
+.dashboard-add-project {
+  background-color: var(--blue-600);
+  width: min(80vw, 1050px);
+  margin-inline:auto;
+  margin-bottom: 2rem;
+}
+
+.banner-title {
+  background-color: var(--blue-700);
+  text-align: center;
+  padding: 2rem;
+  font-size: 2rem;
+}
+
+.dashboard-add-project--form {
+  padding-inline: 5rem;
+  padding-block: 2rem;
+  display:flex;
+  flex-direction: column;
+  gap:1rem;
+}
+
+.dashboard-add-project--form button:last-child {
+  align-self:end;
+}

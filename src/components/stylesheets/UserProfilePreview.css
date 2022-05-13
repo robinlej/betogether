@@ -1,0 +1,27 @@
+.user-profile-preview {
+  display:grid;
+  grid-template-areas: "picture name"
+  "picture promo";
+  column-gap: 1rem;
+  color: var(--contrast-clr);
+}
+
+.user-profile-preview--picture {
+  grid-area: picture;
+  height:4rem;
+  aspect-ratio: 1;
+  background-color:grey;
+  border-radius:50%;
+  object-fit: cover;
+}
+
+.user-profile-preview--name {
+  grid-area: name;
+  align-self:end;
+  font-weight: bold;
+}
+
+.user-profile-preview--promotion {
+  grid-area: promo;
+  font-style:italic;
+}
