@@ -13,12 +13,7 @@ import {
   ChangeEmailDiv,
 } from "../components/StudentProfilePageComponents";
 import StudentHeader from "../components/StudentHeader";
-<<<<<<< HEAD
-import background from "../assets/Website_background.png";
-import "./StudentProfilePage.css";
-=======
 import StudentProfileModal from "../components/StudentProfileModal";
->>>>>>> a9cf2b729f216f93d60340f0182a826036fc3e23
 
 function StudentProfilePage() {
   //   const [users, usersSet] = React.useState([]);
@@ -55,13 +50,8 @@ function StudentProfilePage() {
 
   return (
     <PageBackground>
-<<<<<<< HEAD
-      <StudentHeader page='profile' />
-      <div className="student-profile-maintext">
-=======
       <StudentHeader page="profile" />
       <StudentProfileText>
->>>>>>> a9cf2b729f216f93d60340f0182a826036fc3e23
         <h1> My profile</h1>
         <p> Welcome Jane</p>
         <p> You are a student in the Johnson 7 promotion</p>

@@ -23,7 +23,6 @@ body {
 .App {
   min-height: 100vh;
   background-color: var(--bg-clr);
-<<<<<<< HEAD
   display: grid;
 }
 
@@ -41,6 +40,4 @@ main h1 {
   text-align: center;
   color: rgba(255 255 255 / .6);
   font-size: 3rem;
-=======
->>>>>>> a9cf2b729f216f93d60340f0182a826036fc3e23
-}
+} 
