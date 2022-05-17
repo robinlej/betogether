@@ -177,7 +177,6 @@ const DashboardStep5 = ({ nextPage }) => {
 
   return (
     <main>
-      <StudentHeader />
       <ConsultResultsPageDiv>
         <GroupNameDiv>
           <h1> Group Project Name </h1>
