@@ -72,38 +72,6 @@ export const PastProjectsContainer = styled.div`
     align-items: center;
     justify-content: center;
     position: relative;
+    margin-bottom: 2rem;
 `
 
-// The spider animation idea we had in the beginning, at the end if we consider it, we can just uncomment
-
-// export const NoProjectsSpiderDiv = styled.div`
-//   display: block;
-//   height: 45px;
-//   left: 5%;
-//   margin-left: -22px;
-//   top: 0;
-//   width: 45px;
-//   position:absolute;
-
-//   @keyframes spider-move {
-//     0% {height: 10px;}
-//     100% {height: 100px;}
-//   }
-
-//   &::before {
-//     display: block;
-//     content: "";
-//     width: 1px;
-//     height: 50px;
-//     background: #efebe4;
-//     margin-left: 24px;
-//     margin-bottom: -3px;
-//     animation: spider-move 4s ease-in-out infinite alternate;
-//   }
-// `
-
-// export const NoProjectsSpider = styled.img.attrs({
-//     src: "https://s9.postimg.cc/jh7auf1tr/icon-spider.png"
-// })`
-//     max-width:100%;
-// `
