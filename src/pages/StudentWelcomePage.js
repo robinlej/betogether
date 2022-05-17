@@ -9,8 +9,6 @@ import {
   PastProjectsContainer,
   WelcomePagePromotionFlag,
   WelcomePageProfileDiv,
-  //   NoProjectsSpider,
-  //   NoProjectsSpiderDiv
 } from "../components/StudentWelcomePageComponents";
 import { UploadBtn } from "../components/StudentProfilePageComponents";
 import { NavLink } from "../components/StudentHeaderElements";
@@ -53,7 +51,6 @@ function StudentWelcomePage() {
             <h2>Past group projects</h2>
           </PastProjectsTitle>
           <PastProjectsContainer>
-            {/* <NoProjectsSpiderDiv><NoProjectsSpider></NoProjectsSpider></NoProjectsSpiderDiv> */}
             <p>
               Looks a bit dusty in here, you don't have past projects. Why don't
               you add one?
