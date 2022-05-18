@@ -6,12 +6,11 @@
   align-items: center;
   gap: 1em;
   font-weight:bold;
-  /* position: relative;
-  top: -100px; */
 }
 
 .progress-wheel--number {
-  width: min(100%, 120px);
+  /* width: min(100%, 120px); */
+  width: 120px;
   aspect-ratio:1;
   display:flex;
   justify-content: center;

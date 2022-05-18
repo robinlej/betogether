@@ -7,6 +7,39 @@
   margin-inline: auto;
 }
 
+.dashboard-project-list--item-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: 100%;
+}
+
+.dashboard-project-list--item-rank--container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+}
+
+.dashboard-project-list--item-rank {
+  width:100%;
+  font-size: 4rem;
+  color: var(--secondary-clr);
+  font-weight: 900;
+  text-align: center;
+  flex-grow: 1;
+  max-height: 100%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: max-height .3s ease-out;
+}
+
 .dashboard-project-list--item {
   background-color: var(--blue-600);
   padding: 2rem;

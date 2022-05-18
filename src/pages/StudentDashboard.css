@@ -40,7 +40,15 @@
   grid-row: 2;
 }
 
-.main-with-aside aside {
+.main-with-aside .aside-left {
+  grid-row: 2 / -1;
+  grid-column: 1;
+  /* padding-top: 4rem; */
+  /* width: fit-content; */
+  margin-right: 1rem;
+}
+
+.main-with-aside .aside-right {
   grid-row: 1 / -1;
   grid-column: 3;
   padding-top: 4rem;
