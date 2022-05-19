@@ -17,7 +17,7 @@ function StudentHeader({ page, step }) {
         <div style={{"display":"flex", "gap":"4rem"}}>
         { (page !== 'profile' && page !== 'welcome') && <UserProfilePreview name="Jane Doe" promotion='Johnson 7' /> }
         <NavBtn>
-        { page === 'welcome' && <NavLink to='/profile'><UploadBtn style={{ "margin-right":"2rem"}}>Edit my profile</UploadBtn></NavLink>}
+        { page === 'welcome' && <NavLink to='/profile'><UploadBtn style={{ "marginRight":"2rem"}}>Edit my profile</UploadBtn></NavLink>}
         <NavLink to='/'><NavBtnLink><Logout></Logout>Logout</NavBtnLink></NavLink>
         </NavBtn>
         </div>

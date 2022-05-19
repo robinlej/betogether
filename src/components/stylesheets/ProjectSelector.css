@@ -1,0 +1,69 @@
+.project-selector {
+  background-color: var(--blue-700);
+  margin-top: 4rem;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  max-width: calc((30px + 1em) * 4 + 2rem);
+  justify-content: center;
+  align-items: center;
+}
+
+.project-selector-item {
+  position:relative;
+  height: 40px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  cursor: grab;
+}
+.project-selector-item > img {
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.project-selector-item-hover {
+  position: absolute;
+  inset: 0;
+  display:grid;
+  place-content:center;
+  color: var(--blue-700);
+  font-weight:900;
+  font-size:1.3rem;
+  border-radius: 50%;
+  background-color: rgba(255 255 255 / .4);
+  opacity: 0;
+  transition: opacity .15s ease-in;
+}
+
+.project-selector-item-hover:hover {
+  opacity: 1;
+}
+
+.project-selector-item--tooltip {
+  display:none;
+  color:var(--blue-700);
+  position:absolute;
+  top:-3rem;
+  right: -5%;
+  white-space: nowrap;
+  padding:.2em .5em;
+  border-radius:5px;
+  background-color: var(--secondary-clr);
+}
+
+.project-selector-item--tooltip > svg {
+  transform: rotate(180deg);
+  position:absolute;
+  right:5%;
+  top:95%;
+  height:10px;
+  color:var(--secondary-clr);
+}
+
+
+.project-selector-item:hover .project-selector-item--tooltip {
+  display:block;
+}

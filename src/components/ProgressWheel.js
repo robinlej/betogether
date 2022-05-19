@@ -13,7 +13,7 @@ const ProgressWheel = ({ projectsSubmitted, totalProjects }) => {
   })
 
   return (
-    <aside className='progress-wheel'>
+    <div className='progress-wheel'>
       <div className='progress-wheel--number'>
         {projectsSubmitted} / { totalProjects }
         <svg width='130px' height='130px'>
@@ -23,7 +23,7 @@ const ProgressWheel = ({ projectsSubmitted, totalProjects }) => {
             cx='65'
             cy='65'
             r='60'
-            stroke-linecap='round'
+            strokeLinecap='round'
           />
           <circle
             ref={circleGlow}
@@ -31,12 +31,12 @@ const ProgressWheel = ({ projectsSubmitted, totalProjects }) => {
             cx='65'
             cy='65'
             r='60'
-            stroke-linecap='round'
+            strokeLinecap='round'
           />
         </svg>
       </div>
-      <p>Waiting for other projects...</p>
-    </aside>
+      {projectsSubmitted !== totalProjects && <p>Waiting for other projects...</p>}
+    </div>
   )
 }
 
