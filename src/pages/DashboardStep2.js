@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import useExpandItem from '../hooks/useExpandItem'
+
 import ProjectPreview from '../components/ProjectPreview'
 import ProgressWheel from '../components/ProgressWheel'
+
 import './ProjectPreview.css'
 import '../stylesheets/utils.css'
 
@@ -9,6 +11,7 @@ const DashboardStep2 = ({ nextPage }) => {
   // array of objects with: student name, picture, title of the project, description, db schema image, project sketch, links
   const projects = [
     {
+      id: 1,
       name: 'Dylan',
       profilePic: 'assets/img/janedoe.jpg',
       projectTitle: 'My Great Project',
@@ -19,6 +22,7 @@ const DashboardStep2 = ({ nextPage }) => {
       links: '',
     },
     {
+      id:2,
       name: 'Charlotte',
       profilePic: 'assets/img/janedoe.jpg',
       projectTitle: 'My Great Project',
@@ -29,6 +33,7 @@ const DashboardStep2 = ({ nextPage }) => {
       links: '',
     },
     {
+      id: 3,
       name: 'Anthony',
       profilePic: 'assets/img/janedoe.jpg',
       projectTitle: 'My Great Project',
@@ -39,12 +44,12 @@ const DashboardStep2 = ({ nextPage }) => {
       links: '',
     },
   ]
+  const totalProjects = 20
 
-  const [expandedItem, setExpandedItem] = useState('')
+  const {expandedItem, expandItem} = useExpandItem()
 
-  const expandItem = (item) => {
-    if (expandedItem === item.name) setExpandedItem('')
-    else setExpandedItem(item.name)
+  if (projects.length === totalProjects) {
+    nextPage()
   }
 
   return (
@@ -56,16 +61,15 @@ const DashboardStep2 = ({ nextPage }) => {
           return (
             <ProjectPreview
               project={project}
-              key={project.name}
+              key={project.id}
               expandItem={expandItem}
-              isExpanded={expandedItem === project.name ? true : false}
-              // isDraggable
+              isExpanded={expandedItem === project.id ? true : false}
             />
           )
         })}
       </section>
       <aside className='aside-right'>
-        <ProgressWheel projectsSubmitted={projects.length} totalProjects={20} />
+        <ProgressWheel projectsSubmitted={projects.length} totalProjects={totalProjects} />
       </aside>
     </main>
   )

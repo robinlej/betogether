@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react'
-// import Sortable from 'sortablejs'
 import { ReactSortable } from 'react-sortablejs'
+
+import useExpandItem from '../hooks/useExpandItem'
 
 import ProjectPreview from '../components/ProjectPreview'
 import ProgressWheel from '../components/ProgressWheel'
-// import ProjectSelector from '../components/ProjectSelector'
 import ProjectSelectorItem from '../components/ProjectSelectorItem'
 
 import './ProjectPreview.css'
@@ -150,22 +150,14 @@ const PROJECTS = [
 ]
 
 const DashboardStep3 = ({ nextPage }) => {
-  const [expandedItem, setExpandedItem] = useState("")
+
+  const { expandedItem, expandItem } = useExpandItem()
   const [projects, setProjects] = useState(PROJECTS)
   const projectListRef = useRef(null)
-
-  const expandItem = (item) => {
-    if (expandedItem === item) {
-      setExpandedItem('')
-    } else {
-      setExpandedItem(item)
-    }
-  }
   
   useEffect(() => {
     document.querySelector('.dashboard-project-list--item-rank--container')
   }, [expandItem])
-
 
   useEffect(() => {
     const ranks = [

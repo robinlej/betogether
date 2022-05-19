@@ -3,7 +3,7 @@ import ProjectContent from "./ProjectContent"
 
 const ProjectPreview = ({ project, expandItem, isExpanded, isDraggable }) => {
   const projectRef = useRef(null)
-  const style = isDraggable ? {"cursor": "grab"} : ''
+  const style = isDraggable ? {"cursor": "grab"} : null
 
   useEffect(() => {
       projectRef.current.style.maxHeight = `calc(${projectRef.current.scrollHeight}px + 2rem`
