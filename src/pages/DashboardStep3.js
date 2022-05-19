@@ -5,15 +5,16 @@ import ProjectPreview from '../components/ProjectPreview'
 import ProgressWheel from '../components/ProgressWheel'
 import './ProjectPreview.css'
 import '../stylesheets/utils.css'
+import ProjectSelector from '../components/ProjectSelector'
 
 const DashboardStep3 = ({ nextPage }) => {
   // To be updated when the API & DB is ready
   // array of objects with: student name, picture, title of the project, description, db schema image, project sketch, links
-  const projects = [
+  const PROJECTS = [
     {
       id: 1,
       name: 'Dylan',
-      profilePic: 'assets/img/janedoe.jpg',
+      profilePic: 'https://thispersondoesnotexist.com/image',
       projectTitle: 'My Great Project',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -24,7 +25,7 @@ const DashboardStep3 = ({ nextPage }) => {
     {
       id: 2,
       name: 'Charlotte',
-      profilePic: 'assets/img/janedoe.jpg',
+      profilePic: 'https://source.unsplash.com/random',
       projectTitle: 'My Great Project',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -35,7 +36,7 @@ const DashboardStep3 = ({ nextPage }) => {
     {
       id: 3,
       name: 'Anthony',
-      profilePic: 'assets/img/janedoe.jpg',
+      profilePic: 'https://source.unsplash.com/user/wsanter',
       projectTitle: 'My Great Project',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -46,7 +47,7 @@ const DashboardStep3 = ({ nextPage }) => {
     {
       id: 4,
       name: 'Kristine',
-      profilePic: 'assets/img/janedoe.jpg',
+      profilePic: 'https://source.unsplash.com/random/?happy',
       projectTitle: 'My Great Project',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -57,7 +58,7 @@ const DashboardStep3 = ({ nextPage }) => {
     {
       id: 5,
       name: 'Georgiana',
-      profilePic: 'assets/img/janedoe.jpg',
+      profilePic: 'https://source.unsplash.com/random/?eat',
       projectTitle: 'My Great Project',
       description:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
@@ -143,9 +144,11 @@ const DashboardStep3 = ({ nextPage }) => {
       links: '',
     },
   ]
-
+  console.log("fiiiire")
   const [expandedItem, setExpandedItem] = useState("")
-  let wishlist = projects.map((project) => project.id)
+  const [projects, setProjects] = useState(PROJECTS)
+  // const [wishlist, setWishlist] = useState(projects.map((project) => project.id))
+  // let wishlist = projects.map((project) => project.id)
 
   const expandItem = (item) => {
     if (expandedItem === item) {
@@ -154,38 +157,90 @@ const DashboardStep3 = ({ nextPage }) => {
       setExpandedItem(item)
     }
   }
-
+  // console.log(projects)
+  // Sortable list for the projects previews
   useEffect(() => {
+    console.log("yoyoyoy")
+
     const el = document.querySelector('#sortable-dashboard-project-list')
+
     let sortable = new Sortable(el, {
       fallbackTolerance: 10,
       onUnchoose: function (e) {
-        // console.log(e);
-        const index = e.newIndex === null ? e.oldDraggableIndex : e.newIndex
-
         const ranks = [...document.querySelector('.dashboard-project-list--item-rank--container').children]
-        ranks.forEach((rank, i) => {
-          setTimeout(() => {
+
+        // timeout to let the changes happen, otherwise it doesn't work
+        setTimeout(() => {
+          const projectsOnList = e.item.parentElement.children
+          
+          ranks.forEach((rank, i) => {
             rank.style.removeProperty('height')
             rank.style.maxHeight = el.children[i].style.maxHeight
-            if (i === index && e.item.classList.contains('expanded')) {
+            if (projectsOnList[i].classList.contains('expanded')) {
               rank.style.height = '100%'
             }
-          }, 10)
-        })
+          })
+        }, 10)
       },
       onUpdate: function (e) {
         const oldIndex = e.oldDraggableIndex
         const newIndex = e.newDraggableIndex
-        let updatedWishlist = [...wishlist]
-        const currentProject = updatedWishlist.filter((p, i) => i === oldIndex)[0]
-        updatedWishlist.splice(oldIndex, 1)
-        updatedWishlist.splice(newIndex, 0, currentProject)
-        wishlist = updatedWishlist
+        
+        let updatedProjects = [...projects]
+        const currentProject = updatedProjects.filter((p, i) => i === oldIndex)[0]
+
+        console.log(updatedProjects)
+
+        updatedProjects.splice(oldIndex, 1) // remove project from where it was
+        console.log(updatedProjects);
+        updatedProjects.splice(newIndex, 0, currentProject) // add project at its new index
+
+        // setTimeout(() => { 
+        //   setProjects(updatedProjects)
+        //   console.log(projects)
+        // }, 3000)
+       
       },
     })
-  }, [])
-  
+  })
+
+
+  // Sortable list for the miniature pictures on the right sidebar
+  // useEffect(() => {
+  //   const el = document.querySelector('#project-selector')
+  //   let sortable2 = new Sortable(el, {
+  //     fallbackTolerance: 10,
+  //     // onUnchoose: function (e) {
+  //     //   const index = e.newIndex === null ? e.oldDraggableIndex : e.newIndex
+  //     //   console.log(e);
+  //     //   const ranks = [
+  //     //     ...document.querySelector(
+  //     //       '.dashboard-project-list--item-rank--container'
+  //     //     ).children,
+  //     //   ]
+  //     //   ranks.forEach((rank, i) => {
+  //     //     setTimeout(() => {
+  //     //       rank.style.removeProperty('height')
+  //     //       rank.style.maxHeight = el.children[i].style.maxHeight
+  //     //       if (i === index && e.item.classList.contains('expanded')) {
+  //     //         rank.style.height = '100%'
+  //     //         console.log('bah oui');
+  //     //       }
+  //     //     }, 10)
+  //     //   })
+  //     // },
+  //     onUpdate: function (e) {
+  //       const oldIndex = e.oldDraggableIndex
+  //       const newIndex = e.newDraggableIndex
+  //       let updatedProjects = [...projects]
+  //       const currentProject = updatedProjects.filter((p, i) => i === oldIndex)[0]
+  //       updatedProjects.splice(oldIndex, 1) // remove project from where it was
+  //       updatedProjects.splice(newIndex, 0, currentProject) // add project at its new index
+  //       setProjects(updatedProjects)
+  //     },
+  //   })
+  // }, [])
+
   useEffect(() => {
     document.querySelector('.dashboard-project-list--item-rank--container')
   }, [expandItem])
@@ -210,7 +265,6 @@ const DashboardStep3 = ({ nextPage }) => {
           {projects.map((p, i) => (
             <div 
               key={i}
-              style={{"height": ""}}
               className='dashboard-project-list--item-rank'
             >
               {i + 1}
@@ -227,6 +281,7 @@ const DashboardStep3 = ({ nextPage }) => {
 
       <aside className="aside-right">
         <ProgressWheel projectsSubmitted={20} totalProjects={20} />
+        <ProjectSelector projects={projects} />
       </aside>
     </main>
   )
