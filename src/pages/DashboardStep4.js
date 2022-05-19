@@ -1,34 +1,36 @@
-import Button from '../components/Button'
-import OuterLabelInput from '../components/OuterLabelInput'
-import OuterLabelFileInput from '../components/OuterLabelFileInput'
-import OuterLabelTextarea from '../components/OuterLabelTextarea'
+// import { useEffect } from "react";
+import VotesWheel from "../components/VotesWheel";
+
 
 const DashboardStep4 = ({ nextPage }) => {
-  return (
-    <section className='dashboard-add-project'>
-      <h2 className='banner-title'>Add Your Project</h2>
-      <form method='POST' action='/' className='dashboard-add-project--form'>
-        <OuterLabelInput name='project-title' type='text'>
-          Your Project's Title *
-        </OuterLabelInput>
-        <OuterLabelTextarea name='description' rows={8}>
-          Description *
-        </OuterLabelTextarea>
-        <div className='flex'>
-          <OuterLabelFileInput name='mockup' accept='image/*'>
-            Add a Mockup
-          </OuterLabelFileInput>
-          <OuterLabelFileInput name='db-schema' accept='image/*'>
-            Add a Database Schema
-          </OuterLabelFileInput>
-        </div>
-        <OuterLabelInput name='links' type='text'>
-          Add Links
-        </OuterLabelInput>
-        <Button className='btn-primary'>Submit</Button>
-      </form>
-    </section>
-  )
-}
+  // The function fetches from a mock api an array of objects which have a default boolean false on a "hasVoted" key and when all the booleans are true, it renders the next page
 
-export default DashboardStep4
+  // useEffect(() => {
+  //   const url = "https://6284e5593060bbd347411d5e.mockapi.io/betogether/Vote_list"
+
+  //   const fetchVotes = async () => {
+  //     try{
+  //     const response = await fetch(url)
+  //     const json = await response.json()
+  //     for (let i = 0; i < json.length; i++) {
+  //       let allVotes = json[i].hasVoted
+  //       allVotes === true ? nextPage() : console.log("It did not work")
+  //     }
+  //   } catch (error){
+  //     console.log(error)
+  //   }
+  // }
+  // fetchVotes()
+  // }, [])
+  
+  
+  // The votes in the wheel will be changed when we'll have the data, for now I can't visualise how they will be displayed in the backend
+
+  return (
+    <main>
+      <VotesWheel votesSubmitted={12} totalVotes={30}/>
+    </main>
+  );
+};
+
+export default DashboardStep4;
