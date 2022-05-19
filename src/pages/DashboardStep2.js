@@ -44,7 +44,7 @@ const DashboardStep2 = ({ nextPage }) => {
       links: '',
     },
   ]
-  const totalProjects = 20
+  const totalProjects = 3
 
   const {expandedItem, expandItem} = useExpandItem()
 

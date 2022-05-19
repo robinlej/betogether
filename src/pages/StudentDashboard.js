@@ -15,6 +15,10 @@ function StudentDashboard() {
     setStep(step + 1)
   }
 
+  const prevPage = () => {
+    setStep(step - 1)
+  }
+
   const setDashboardScreen = (step) => {
     switch(step) {
       case 1:
@@ -24,7 +28,7 @@ function StudentDashboard() {
       case 3:
         return <DashboardStep3 nextPage={nextPage} />
       case 4:
-        return <DashboardStep4 nextPage={nextPage} />
+        return <DashboardStep4 nextPage={nextPage} prevPage={prevPage} />
       case 5:
         return <DashboardStep5 nextPage={nextPage} />
     }

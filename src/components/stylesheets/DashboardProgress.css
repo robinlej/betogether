@@ -30,10 +30,10 @@
   border: var(--border-width) solid var(--secondary-clr);
 }
 
-.dashboard-progress--step.active .dashboard-progress--step--number {
+.dashboard-progress--step.active .dashboard-progress--step--number,
+.dashboard-progress--step.past-active .dashboard-progress--step--number {
   background-color: var(--secondary-clr);
   color:var(--blue-700);
-
 }
 
 .dashboard-progress--step.active .dashboard-progress--step--label {
