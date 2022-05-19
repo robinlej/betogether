@@ -49,9 +49,13 @@
 }
 
 .main-with-aside .aside-right {
+  position: sticky;
+  top: 0;
   grid-row: 1 / -1;
   grid-column: 3;
   padding-top: 4rem;
+  height: calc(100vh - min(15vh,150px));
   width: fit-content;
   margin-left: 1rem;
+  margin-right:2rem;
 }

@@ -9,7 +9,7 @@ import "./StudentDashboard.css";
 import "../stylesheets/utils.css"
 
 function StudentDashboard() {
-  const [step, setStep] = useState(3)
+  const [step, setStep] = useState(1)
 
   const nextPage = () => {
     setStep(step + 1)

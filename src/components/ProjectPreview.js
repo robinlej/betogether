@@ -9,7 +9,7 @@ const ProjectPreview = ({ project, expandItem, isExpanded, isDraggable }) => {
       projectRef.current.style.maxHeight = `calc(${projectRef.current.scrollHeight}px + 2rem`
   }, [isExpanded])
 
-  const expandProject = (e) => {
+  const expandProject = () => {
     expandItem(project.id)
   }
 

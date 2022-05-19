@@ -59,11 +59,14 @@ const DashboardStep2 = ({ nextPage }) => {
               key={project.name}
               expandItem={expandItem}
               isExpanded={expandedItem === project.name ? true : false}
+              // isDraggable
             />
           )
         })}
       </section>
-      <ProgressWheel projectsSubmitted={projects.length} totalProjects={20} />
+      <aside className='aside-right'>
+        <ProgressWheel projectsSubmitted={projects.length} totalProjects={20} />
+      </aside>
     </main>
   )
 }
