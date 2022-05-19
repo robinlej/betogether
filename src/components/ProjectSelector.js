@@ -1,9 +1,12 @@
+import { forwardRef } from "react"
+import { ReactSortable } from "react-sortablejs"
+
 import ProjectSelectorItem from "./ProjectSelectorItem"
 import './stylesheets/ProjectSelector.css'
 
-const ProjectSelector = ({ projects }) => {
+const ProjectSelector = forwardRef(({ projects }, ref) => {
   return (
-    <div className='project-selector' id='project-selector'>
+    <div ref={ref} className='project-selector' id='project-selector'>
       {projects.map((project) => {
         return (
           <ProjectSelectorItem
@@ -14,6 +17,6 @@ const ProjectSelector = ({ projects }) => {
       })}
     </div>
   )
-}
+})
 
 export default ProjectSelector

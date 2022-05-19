@@ -1,6 +1,5 @@
 .progress-wheel {
   text-align:center;
-  margin-right: 2rem;
   display:flex;
   flex-direction: column;
   align-items: center;
@@ -9,7 +8,6 @@
 }
 
 .progress-wheel--number {
-  /* width: min(100%, 120px); */
   width: 120px;
   aspect-ratio:1;
   display:flex;
