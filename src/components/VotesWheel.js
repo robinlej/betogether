@@ -7,6 +7,7 @@ import {
   CircleLine,
   CircleLineSpinner,
   WaitForVotesText,
+  CircleLineSpinnerContainer,
 } from "./DashboardStep4PageComponents";
 
 function VotesWheel({ votesSubmitted, totalVotes }) {
@@ -19,7 +20,9 @@ function VotesWheel({ votesSubmitted, totalVotes }) {
             <CircleLine></CircleLine>
           </CircleLineSvg>
         </ProgressWheelNumber>
-        <CircleLineSpinner></CircleLineSpinner>
+        <CircleLineSpinnerContainer>
+          <CircleLineSpinner />
+        </CircleLineSpinnerContainer>
       </ProgressWheel>
       <WaitForVotesText>
         <p> Wait until everybody else has voted! </p>

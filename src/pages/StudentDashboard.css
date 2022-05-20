@@ -59,3 +59,40 @@
   margin-left: 1rem;
   margin-right:2rem;
 }
+
+
+/********** TRANSITIONS ****************/
+/* Appear */
+.slide-appear {
+  opacity: 0;
+}
+
+.slide-appear-active {
+  opacity: 1;
+  transition: opacity 1000ms linear;
+}
+
+
+/* Slide on changing the component */
+
+.slide-enter {
+  transform: translate(100%);
+}
+
+.slide-enter-active {
+  transform: translate(0);
+  transition: transform .3s cubic-bezier(.76,2.14,.04,.87);
+}
+
+.slide-exit {
+  transform: translate(0);
+}
+
+.slide-exit-active {
+  transform: translate(-100%);
+  transition: transform 0.25s cubic-bezier(.76,2.14,.04,.87);
+}
+
+.slide-exit-done {
+  transform: translate(-100%);
+}

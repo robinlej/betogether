@@ -9,7 +9,7 @@ export const VotesWheelPageDiv = styled.main`
   padding: 100px 0;
 `;
 
-export const ProgressWheel = styled.aside`
+export const ProgressWheel = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -48,9 +48,12 @@ export const CircleLine = styled.circle`
 // Spinning animation
 
 export const Spinner = keyframes`
+ 0% { transform: rotate(0deg) };
  100% {transform: rotate(360deg)}; 
 `
-
+export const CircleLineSpinnerContainer = styled.div`
+  animation: ${Spinner} 5s linear infinite;
+`;
 
 export const CircleLineSpinner = styled.div`
   width: 6.7em;
@@ -59,7 +62,7 @@ export const CircleLineSpinner = styled.div`
   border-right: 0.2em solid #63C3D1;
   border-radius: 50%;
   margin: auto;
-  animation: ${Spinner} 1s linear infinite;
+  animation: ${Spinner} 2s cubic-bezier(.76,-0.01,.29,1)  infinite;
   box-shadow: inset 0 0 0.5em hsl(188, 54%, 60%), 0 0 0.5em hsl(188, 54%, 60%);
 `;
 
