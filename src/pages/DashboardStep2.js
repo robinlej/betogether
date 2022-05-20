@@ -49,12 +49,14 @@ const DashboardStep2 = ({ nextPage }) => {
   const {expandedItem, expandItem} = useExpandItem()
 
   if (projects.length === totalProjects) {
-    nextPage()
+    setTimeout(() => {
+      nextPage()
+    }, 1000)
   }
 
   return (
     <main className='main-with-aside'>
-      <h1>Group Project Name</h1>
+      {/* <h1>Group Project Name</h1> */}
 
       <section className='dashboard-project-list main-with-aside__main-content'>
         {projects.map((project) => {

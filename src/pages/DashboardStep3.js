@@ -194,7 +194,7 @@ const DashboardStep3 = ({ nextPage }) => {
 
   return (
     <main className='main-with-aside'>
-      <h1>Group Project Name</h1>
+      {/* <h1>Group Project Name</h1> */}
 
       <aside className='aside-left dashboard-project-list--item-rank--container'>
         {projects.map((p, i) => (
