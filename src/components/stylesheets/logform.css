@@ -26,3 +26,37 @@
 .log-form--button {
   margin-top: auto;
 }
+
+input.invalid {
+  border: 2px solid red;
+}
+
+.tooltip {
+  position: absolute;
+  font-size:1rem;
+  top:-.5em;
+  right:-.5em;
+}
+
+.tooltip svg {
+  color:var(--contrast-clr);
+  background-color:var(--secondary-clr);
+  border-radius:50%;
+  stroke:none;
+}
+
+.tooltip .tooltip-hover {
+  position:absolute;
+  bottom:100%;
+  transform: translateX(-50%);
+  width:300px;
+  display:none;
+  color:white;
+  padding: .5rem 1rem;
+  background-color: var(--secondary-clr);
+  border-radius:5px;
+}
+
+.tooltip:hover .tooltip-hover {
+  display:block;
+}

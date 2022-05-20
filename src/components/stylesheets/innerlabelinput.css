@@ -24,3 +24,7 @@
   padding: 0 .5em;
   background-color: var(--contrast-clr);
 }
+
+.inner-label-wrap input:invalid:not(:placeholder-shown) {
+  border: 2px solid red;
+}

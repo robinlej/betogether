@@ -9,7 +9,7 @@ const DropdownMenu = ({ children, name }) => {
     <select className='dropdown-select' name={name} id={name}>
       <option value=''>{children}</option>
       {options.map(option => (
-        <option value={option}>{option}</option>
+        <option key={option} value={option}>{option}</option>
       ))}
     </select>
   )
