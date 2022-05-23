@@ -3,7 +3,7 @@ import StudentProfilePage from './pages/StudentProfilePage.js'
 import StudentDashboard from './pages/StudentDashboard'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import StudentWelcomePage from './pages/StudentWelcomePage.js'
-import TestComponent from './pages/signup-test.js'
+// import TestComponent from './pages/signup-test.js'
 
 function App() {
   return (

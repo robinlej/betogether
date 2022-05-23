@@ -59,7 +59,7 @@ export const CircleLineSpinner = styled.div`
   border-right: 0.2em solid #63C3D1;
   border-radius: 50%;
   margin: auto;
-  animation: ${Spinner} 1s linear infinite;
+  animation: ${Spinner} 3s linear infinite;
   box-shadow: inset 0 0 0.5em hsl(188, 54%, 60%), 0 0 0.5em hsl(188, 54%, 60%);
 `;
 

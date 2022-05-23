@@ -6,13 +6,13 @@ import {
   ProfileImageUpload,
   StudentProfileMainDiv,
   StudentProfileDetailsReset,
-  ChangeEmail,
   ChangePassword,
   ChangePasswordDiv,
-  ChangeEmailDiv,
+  ProfilePageMain
 } from "../components/StudentProfilePageComponents";
 import StudentHeader from "../components/StudentHeader";
 import StudentProfileModal from "../components/StudentProfileModal";
+
 
 function StudentProfilePage() {
   //   const [users, usersSet] = React.useState([]);
@@ -50,7 +50,7 @@ function StudentProfilePage() {
   return (
     <>
       <StudentHeader page='profile' />
-      <main>
+      <ProfilePageMain>
         <StudentProfileText>
           <h1> My profile</h1>
           <p> Welcome Jane</p>
@@ -60,7 +60,7 @@ function StudentProfilePage() {
           <ProfileImageUpload>
             <h4>Profile Picture</h4>
             <img
-              src='https://bit.ly/3FKSgvh'
+              src='assets/img/user-profile-picture.png'
               alt='ProfilePicture'
               style={{ height: '150px' }}
             />
@@ -69,22 +69,6 @@ function StudentProfilePage() {
             </UploadBtn>
           </ProfileImageUpload>
           <StudentProfileDetailsReset>
-            <ChangeEmail>
-              <form method='POST' action='/'>
-                <label>E-mail</label>
-                <br />
-                <ChangeEmailDiv>
-                  <input name='email' type='text' style={{ width: '350px' }} />
-                  <UploadBtn
-                    onClick={() => {
-                      setOpenModal(true)
-                    }}
-                  >
-                    Change e-mail
-                  </UploadBtn>
-                </ChangeEmailDiv>
-              </form>
-            </ChangeEmail>
             <ChangePassword>
               <form method='POST' action='/'>
                 <label>New password</label>
@@ -101,7 +85,7 @@ function StudentProfilePage() {
                   <input
                     name='retype-password'
                     type='password'
-                    style={{ width: '350px' }}
+                    style={{ width: '350px', padding: '1em' }}
                   />
                   <UploadBtn
                     onClick={() => {
@@ -116,7 +100,7 @@ function StudentProfilePage() {
           </StudentProfileDetailsReset>
         </StudentProfileMainDiv>
         {openModal && <StudentProfileModal CloseModal={setOpenModal} />}
-      </main>
+      </ProfilePageMain>
     </>
   )
 }
