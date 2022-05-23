@@ -31,7 +31,7 @@ function StudentDashboard() {
       case 3:
         return <DashboardStep3 nextPage={nextPage} />
       case 4:
-        return <DashboardStep4 nextPage={nextPage} prevPage={prevPage} />
+        return <DashboardStep4 nextPage={nextPage} />
       case 5:
         return <DashboardStep5 nextPage={nextPage} />
     }
@@ -41,23 +41,19 @@ function StudentDashboard() {
     <>
       <StudentHeader page='dashboard' step={step} />
 
-      {step !== 4 && <h1>Group Project Name</h1>}
+      <h1>Group Project Name</h1>
       <SwitchTransition mode='out-in'>
         <CSSTransition
-          in={true}
-          appear={true}
-          timeout={1000}
-          // classNames='slide-in'
-
           key={step}
+          appear={true}
+          timeout={{ appear: 1000, exit: 600, enter: 600}}
+          classNames='slide'
+
           addEndListener={(node, done) => {
             node.addEventListener('transitionend', done, false)
           }}
-          // timeout={5000}
-          classNames='slide'
         >
           {setDashboardScreen(step)}
-          {/* <DashboardStep step={step} nextPage={nextPage} /> */}
         </CSSTransition>
       </SwitchTransition>
     </>

@@ -10,7 +10,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import GroupProjectContent from "./GroupProjectContent";
 
-function GroupsPreview({ group, expandItem, isExpanded }) {
+function GroupsPreview({ group, expandItem, expandedItem, isExpanded }) {
   const groupRef = useRef(null);
 
   const expandGroup = () => {
@@ -19,6 +19,20 @@ function GroupsPreview({ group, expandItem, isExpanded }) {
 
   useEffect(() => {
     groupRef.current.style.maxHeight = `calc(${groupRef.current.scrollHeight}px + 3rem`;
+    groupRef.current.style.order = isExpanded ? '-1' : null;
+    
+    console.log(isExpanded)
+
+    if (isExpanded) {
+      console.log('after expanding: scroll to element')
+      window.scrollTo({top: groupRef.current.offsetTop, behavior: 'smooth'})
+    }
+    // if (!isExpanded && expandedItem === null) {
+    //   window.scrollTo({
+    //     top: groupRef.current.offsetTop,
+    //     behavior: 'smooth',
+    //   })
+    // }
   }, [isExpanded]);
 
   return (
