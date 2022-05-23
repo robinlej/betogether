@@ -21,7 +21,7 @@ export const WelcomePageProfilePic = styled.img.attrs({
     left: 215px;
     top: 102px;
     object-fit: cover;
-    transform: translate(-10%, -20%);
+    transform: translate(0, -20%);
     z-index: 10;
 `
 
@@ -30,7 +30,7 @@ export const WelcomePagePromotionFlag = styled.div`
     height: 37px;
     background-color: #63C3D1;
     z-index: 11;
-    transform: translate(11.7em, 23.9em);
+    transform: translate(14.4em, 23.9em);
     color: white;
     display: flex;
     align-items: center;
