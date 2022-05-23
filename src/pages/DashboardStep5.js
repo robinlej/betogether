@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import StudentHeader from "../components/StudentHeader";
 import {
   GroupNameDiv,
   GroupProjectsMainDiv,

@@ -1,7 +1,13 @@
 
 import { HiOutlineUpload } from "react-icons/hi";
 import styled from "styled-components";
-// import background from "../assets/Website_background.png";
+
+export const ProfilePageMain = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 
 export const ProfileImageUpload = styled.div`
   color: white;
@@ -20,13 +26,8 @@ export const StudentProfileText = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 48px;
 `
 
-// export const PageBackground = styled.div`
-//   background-image: url(${background});
-//   height: 100vh;
-// `
 
 export const UploadBtn = styled.div`
   border-radius: 5px;
@@ -52,6 +53,9 @@ export const UploadImg = styled(HiOutlineUpload)`
 
 export const StudentProfileMainDiv = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
 `
 
 export const StudentProfileDetailsReset = styled.div`
@@ -61,19 +65,13 @@ export const StudentProfileDetailsReset = styled.div`
   width: 70vw;
 `
 
-export const ChangeEmail = styled.div`
-  display: flex;
-  color: white;
-`
 export const ChangePassword = styled.div`
   display: flex;
   color: white;
 `
+
 export const ChangePasswordDiv = styled.div`
   display: flex;
   gap: 16px;
 `
-export const ChangeEmailDiv = styled.div`
-  display: flex;
-  gap: 16px;
-`
+
