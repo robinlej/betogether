@@ -28,6 +28,7 @@ body {
   background-position: bottom left;
   background-size: contain;
   background-attachment: fixed;
+  overflow-x:hidden;
 }
 
 .home-logo {

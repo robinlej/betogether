@@ -3,8 +3,8 @@ import {
   VotesWheelPageDiv,
   ProgressWheel,
   ProgressWheelNumber,
-  CircleLineSvg,
-  CircleLine,
+  // CircleLineSvg,
+  // CircleLine,
   CircleLineSpinner,
   WaitForVotesText,
   CircleLineSpinnerContainer,
@@ -16,13 +16,13 @@ function VotesWheel({ votesSubmitted, totalVotes }) {
       <ProgressWheel>
         <ProgressWheelNumber>
           {votesSubmitted} / {totalVotes}
-          <CircleLineSvg>
+          {/* <CircleLineSvg>
             <CircleLine></CircleLine>
-          </CircleLineSvg>
+          </CircleLineSvg> */}
+          <CircleLineSpinnerContainer>
+            <CircleLineSpinner />
+          </CircleLineSpinnerContainer>
         </ProgressWheelNumber>
-        <CircleLineSpinnerContainer>
-          <CircleLineSpinner />
-        </CircleLineSpinnerContainer>
       </ProgressWheel>
       <WaitForVotesText>
         <p> Wait until everybody else has voted! </p>

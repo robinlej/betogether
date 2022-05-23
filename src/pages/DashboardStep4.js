@@ -26,10 +26,13 @@ const DashboardStep4 = ({ nextPage }) => {
   
   // The votes in the wheel will be changed when we'll have the data, for now I can't visualise how they will be displayed in the backend
 
+  const votesSubmitted = 20
+  const totalVotes = 20
+
+  if (votesSubmitted === totalVotes) nextPage()
+
   return (
-    <main>
-      <VotesWheel votesSubmitted={12} totalVotes={30}/>
-    </main>
+      <VotesWheel votesSubmitted={votesSubmitted} totalVotes={totalVotes}/>
   );
 };
 

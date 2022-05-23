@@ -26,23 +26,22 @@ export const ProgressWheelNumber = styled.div`
   align-items: center;
   background-color: var(--blue-700);
   border-radius: 50%;
-  position: fixed;
 `;
 
-export const CircleLineSvg = styled.svg`
-  width: 130px;
-  height: 130px;
-  fill: none;
-  position: absolute;
-`;
+// export const CircleLineSvg = styled.svg`
+//   width: 130px;
+//   height: 130px;
+//   fill: none;
+//   position: absolute;
+// `;
 
-export const CircleLine = styled.circle`
-  cx: 65;
-  cy: 65;
-  r: 60;
-  stroke-linecap: round;
-  position: relative;
-`;
+// export const CircleLine = styled.circle`
+//   cx: 65;
+//   cy: 65;
+//   r: 60;
+//   stroke-linecap: round;
+//   position: relative;
+// `;
 
 
 // Spinning animation
@@ -52,6 +51,7 @@ export const Spinner = keyframes`
  100% {transform: rotate(360deg)}; 
 `
 export const CircleLineSpinnerContainer = styled.div`
+  position:absolute;
   animation: ${Spinner} 5s linear infinite;
 `;
 
