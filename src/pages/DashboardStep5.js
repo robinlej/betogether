@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   GroupNameDiv,
   GroupProjectsMainDiv,
@@ -167,12 +167,50 @@ const DashboardStep5 = ({ nextPage }) => {
     },
   ];
 
-  const [expandedItem, setExpandedItem] = useState(null);
+  const [expandedItems, setExpandedItems] = useState(groups.map(
+      group => ({
+        id: group.groupProjectTitle,
+        isExpanded: false
+      })
+    ));
+  const [lastItemClicked, setLastItemClicked] = useState(null)
 
-  const expandItem = (item) => {
-    if (expandedItem === item.groupProjectTitle) setExpandedItem(null);
-    else setExpandedItem(item.groupProjectTitle);
-  };
+  const expandItem = useCallback((item) => {
+    let newExpandedItems = [...expandedItems]
+    const expandedItem =
+      newExpandedItems[
+        groups.indexOf(
+          groups.find((group) => group.groupProjectTitle === item.id)
+        )
+      ]
+
+    expandedItem.isExpanded = !expandedItem.isExpanded
+
+    // if another item was already expanded, shrink it
+    if (newExpandedItems.some(otherItem => otherItem.isExpanded && otherItem !== expandedItem)) {
+      newExpandedItems = newExpandedItems.map((otherItem) => {
+        // if another item is expanded && it's not the item we clicked on, set to false
+        if (otherItem.isExpanded && otherItem !== expandedItem) {
+          return {...otherItem, isExpanded: false}
+        } else {
+          return otherItem
+        }
+      })
+    }
+    
+    setExpandedItems(newExpandedItems)
+    setLastItemClicked({id: groups.indexOf(groups.find((group) => group.groupProjectTitle === item.id)), isExpanded: expandedItem.isExpanded})
+  }, [])
+
+  useEffect(() => {
+    if (lastItemClicked !== null) {
+      const item = [...document.querySelectorAll('article')][lastItemClicked.id]
+      window.scrollTo({
+        top: item.offsetTop,
+        behavior: 'smooth',
+      })
+    }
+  }, [lastItemClicked])
 
   return (
     <main>
@@ -185,16 +223,15 @@ const DashboardStep5 = ({ nextPage }) => {
           </h3>
         </GroupNameDiv>
         <GroupProjectsMainDiv>
-          {groups.map((group) => {
+          {groups.map((group, i) => {
             return (
               <GroupsPreview
                 key={uuidv4()}
                 group={group}
                 expandItem={expandItem}
-                // expandedItem={expandedItem}
-                isExpanded={expandedItem === group.groupProjectTitle ? true : false}
+                isExpanded={expandedItems[i].isExpanded}
               />
-            );
+            )
           })}
         </GroupProjectsMainDiv>
       </ConsultResultsPageDiv>
