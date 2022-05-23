@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
+import { CSSTransition, SwitchTransition } from 'react-transition-group'
+
 import StudentHeader from "../components/StudentHeader";
+import DashboardStep from './DashboardStep'
 import DashboardStep1 from "./DashboardStep1"
 import DashboardStep2 from './DashboardStep2'
 import DashboardStep3 from './DashboardStep3'
@@ -28,7 +31,7 @@ function StudentDashboard() {
       case 3:
         return <DashboardStep3 nextPage={nextPage} />
       case 4:
-        return <DashboardStep4 nextPage={nextPage} prevPage={prevPage} />
+        return <DashboardStep4 nextPage={nextPage} />
       case 5:
         return <DashboardStep5 nextPage={nextPage} />
     }
@@ -37,7 +40,22 @@ function StudentDashboard() {
   return (
     <>
       <StudentHeader page='dashboard' step={step} />
-      {setDashboardScreen(step)}
+
+      <h1>Group Project Name</h1>
+      <SwitchTransition mode='out-in'>
+        <CSSTransition
+          key={step}
+          appear={true}
+          timeout={{ appear: 1000, exit: 600, enter: 600}}
+          classNames='slide'
+
+          addEndListener={(node, done) => {
+            node.addEventListener('transitionend', done, false)
+          }}
+        >
+          {setDashboardScreen(step)}
+        </CSSTransition>
+      </SwitchTransition>
     </>
   )
 }

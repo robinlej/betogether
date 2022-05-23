@@ -28,6 +28,7 @@ body {
   background-position: bottom left;
   background-size: contain;
   background-attachment: fixed;
+  overflow-x:hidden;
 }
 
 .home-logo {
@@ -40,7 +41,7 @@ main {
   padding-bottom: 2rem;
 }
 
-main h1 {
+ h1 {
   margin-block: 1em;
   text-align: center;
   color: rgba(255 255 255 / .6);

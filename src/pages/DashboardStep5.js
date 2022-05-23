@@ -167,10 +167,10 @@ const DashboardStep5 = ({ nextPage }) => {
     },
   ];
 
-  const [expandedItem, setExpandedItem] = useState("");
+  const [expandedItem, setExpandedItem] = useState(null);
 
   const expandItem = (item) => {
-    if (expandedItem === item.groupProjectTitle) setExpandedItem("");
+    if (expandedItem === item.groupProjectTitle) setExpandedItem(null);
     else setExpandedItem(item.groupProjectTitle);
   };
 
@@ -178,7 +178,6 @@ const DashboardStep5 = ({ nextPage }) => {
     <main>
       <ConsultResultsPageDiv>
         <GroupNameDiv>
-          <h1> Group Project Name </h1>
           <h2 style={{ color: "#63C3D1" }}> You are in Group 2 </h2>
           <h3 style={{ color: "#EE964B", fontSize: "16px" }}>
             {" "}
@@ -192,9 +191,8 @@ const DashboardStep5 = ({ nextPage }) => {
                 key={uuidv4()}
                 group={group}
                 expandItem={expandItem}
-                isExpanded={
-                  expandedItem === group.groupProjectTitle ? true : false
-                }
+                // expandedItem={expandedItem}
+                isExpanded={expandedItem === group.groupProjectTitle ? true : false}
               />
             );
           })}

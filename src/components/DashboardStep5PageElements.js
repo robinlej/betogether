@@ -21,6 +21,7 @@ export const GroupProjectsMainDiv = styled.div`
     flex-wrap: wrap;
     margin: 3rem;
     gap: 5rem;
+    max-width: 1250px;
 `
 
 export const GroupProjectCardTitle = styled.div`
@@ -62,6 +63,7 @@ export const GroupProjectFullDiv = styled.div`
     display: flex;
     background-color: var(--blue-600);
     padding: 1em;
+    cursor:pointer;
 `
 export const GroupProjectDetails = styled.div`
     display: flex;

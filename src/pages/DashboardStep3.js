@@ -194,8 +194,6 @@ const DashboardStep3 = ({ nextPage }) => {
 
   return (
     <main className='main-with-aside'>
-      <h1>Group Project Name</h1>
-
       <aside className='aside-left dashboard-project-list--item-rank--container'>
         {projects.map((p, i) => (
           <div key={i} className='dashboard-project-list--item-rank'>
@@ -203,12 +201,12 @@ const DashboardStep3 = ({ nextPage }) => {
           </div>
         ))}
       </aside>
+
       <ReactSortable
         tag='section'
         className='dashboard-project-list main-with-aside__main-content'
         list={projects}
         setList={setProjects}
-        // onUnchoose={handleUnchoose}
         ref={projectListRef}
       >
         {projects.map((project, index) => {
@@ -217,18 +215,19 @@ const DashboardStep3 = ({ nextPage }) => {
       </ReactSortable>
 
       <aside className='aside-right'>
-        <ProgressWheel projectsSubmitted={20} totalProjects={20} />
-        <ReactSortable
-          className='project-selector'
-          list={projects}
-          setList={setProjects}
-          // onUnchoose={handleUnchoose}
-        >
-          {projects.map((project) => {
-            return <ProjectSelectorItem key={project.id} project={project} index={projects.indexOf(project)} />
-          })}
-        </ReactSortable>
-        <Button className='btn-primary full-width' style={{"position": "absolute", "bottom": "2rem"}} handleClick={nextPage}>VOTE</Button>
+        <div>
+          <ProgressWheel projectsSubmitted={20} totalProjects={20} />
+          <ReactSortable
+            className='project-selector'
+            list={projects}
+            setList={setProjects}
+          >
+            {projects.map((project) => {
+              return <ProjectSelectorItem key={project.id} project={project} index={projects.indexOf(project)} />
+            })}
+          </ReactSortable>
+        </div>
+        <Button className='btn-primary full-width' handleClick={nextPage}>VOTE</Button>
       </aside>
     </main>
   )

@@ -49,12 +49,13 @@ const DashboardStep2 = ({ nextPage }) => {
   const {expandedItem, expandItem} = useExpandItem()
 
   if (projects.length === totalProjects) {
-    nextPage()
+    setTimeout(() => {
+      nextPage()
+    }, 1000)
   }
 
   return (
     <main className='main-with-aside'>
-      <h1>Group Project Name</h1>
 
       <section className='dashboard-project-list main-with-aside__main-content'>
         {projects.map((project) => {
@@ -63,11 +64,12 @@ const DashboardStep2 = ({ nextPage }) => {
               project={project}
               key={project.id}
               expandItem={expandItem}
-              isExpanded={expandedItem === project.id ? true : false}
+              isExpanded={expandedItem === project.id}
             />
           )
         })}
       </section>
+
       <aside className='aside-right'>
         <ProgressWheel projectsSubmitted={projects.length} totalProjects={totalProjects} />
       </aside>
