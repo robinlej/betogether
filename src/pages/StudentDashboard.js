@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
 
 import StudentHeader from "../components/StudentHeader";
-import DashboardStep from './DashboardStep'
 import DashboardStep1 from "./DashboardStep1"
 import DashboardStep2 from './DashboardStep2'
 import DashboardStep3 from './DashboardStep3'
