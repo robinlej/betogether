@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import Button from './Button'
 import DropdownMenu from './DropdownMenu'
 import InnerLabelInput from './InnerLabelInput'
@@ -23,71 +23,96 @@ const LogForm = ({ isLogin }) => {
   const [isSignupSubmitted, setIsSignupSubmitted] = useState(false)
   const [canBeSubmitted, setCanBeSubmitted] = useState(false)
 
-  const [inputs, setInputs] = useState({
+  const [signupInputs, setSignupInputs] = useState({
     firstName: {
-      value: '',
+      value: null,
       valid: false,
     },
     lastName: {
-      value: '',
+      value: null,
       valid: false,
     },
     email: {
-      value: '',
+      value: null,
       valid: false,
     },
     password: {
-      value: '',
+      value: null,
       valid: false,
     },
     confirmPassword: {
-      value: '',
+      value: null,
       valid: false,
     },
-    // promotion: {
-    //   value: '',
-    //   valid: true
-    // }
+    promotion: {
+      value: null,
+      valid: true
+    }
   })
 
-  // useEffect(() => {
-  //   fetch('https://infinite-oasis-89157.herokuapp.com/login/', {
-  //     method: 'POST',
-  //     mode: 'cors',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       username,
-  //       first_name: firstName,
-  //       last_name: lastName,
-  //       email,
-  //       password,
-  //     }),
-  //   })
-  // }, [isLoginSubmitted])
+  const [loginInputs, setLoginInputs] = useState({
+     email: {
+       value: null,
+     },
+     password: {
+       value: null,
+     }
+   })
 
   useEffect(() => {
-    if (isSignupSubmitted) {
-      fetch('https://infinite-oasis-89157.herokuapp.com/users/', {
+    // console.log("inside useEffect: ", isLoginSubmitted);
+    if (isLoginSubmitted) {
+      fetch('https://be-together-backend.herokuapp.com/login/', {
         method: 'POST',
         mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username: inputs.firstName.value + inputs.lastName.value,
-          first_name: inputs.firstName.value,
-          last_name: inputs.lastName.value,
-          email: inputs.email.value,
-          password: inputs.password.value,
+          email: loginInputs.email.value,
+          password: loginInputs.password.value,
         }),
       })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        console.log(data)
+        if (data.error) {
+          setIsLoginSubmitted(false)
+        }
+      })
+      .catch(err => {
+        console.error(err)
+      })
+    }
+  }, [isLoginSubmitted])
+
+  useEffect(() => {
+    if (isSignupSubmitted) {
+      fetch('https://be-together-backend.herokuapp.com/users/', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          first_name: signupInputs.firstName.value,
+          last_name: signupInputs.lastName.value,
+          email: signupInputs.email.value,
+          password: signupInputs.password.value,
+          promotion: parseInt(signupInputs.promotion.value),
+        })
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(err => console.error(err))
     }
   }, [isSignupSubmitted])
 
   const login = () => {
     setIsLoginSubmitted(true)
+    // console.log("inside login: ", isLoginSubmitted)
   }
 
   const signup = () => {
@@ -96,30 +121,36 @@ const LogForm = ({ isLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // console.log(e)
   }
 
-  const handleInputChange = (e) => {
-    const newInputs = {...inputs}
+  const handleInputChangeOnSignup = (e) => {
+    const newInputs = {...signupInputs}
     newInputs[e.target.name].value = e.target.value
-    if (e.target.value) {
+    if (e.target.name !== 'promotion' && e.target.value) {
       newInputs[e.target.name].valid = checkValidity(
         e.target.value,
         e.target.name
       )
     }
-
-    setInputs(newInputs)
+    
+    setSignupInputs(newInputs)
     
     checkFormValidity()
-    // console.log(inputs);
+    console.log(signupInputs);
+  }
+
+  const handleInputChangeOnLogin = (e) => {
+    const newInputs = {...loginInputs}
+    newInputs[e.target.name].value = e.target.value
+
+    setLoginInputs(newInputs)
   }
 
   const checkValidity = (value, type) => {
     const isValid = value
       ? (
         type === 'confirmPassword'
-        ? value === inputs.password.value
+        ? value === signupInputs.password.value
         : regexTable[type]?.test(value)
       )
       : true
@@ -128,29 +159,41 @@ const LogForm = ({ isLogin }) => {
   }
 
   const checkFormValidity = () => {
-    // if no input value is left uncompleted
+    // if no input value is left uncompleted (except for the promotion which is not mandatory)
     // and all inputs are valid
+    const inputsValues = Object.values(signupInputs)
+    inputsValues.pop()
     if (
-      Object.values(inputs).find((input) => input.value === '') === undefined &&
-      Object.values(inputs).find((input) => input.valid === false) === undefined
+      inputsValues.map((input) => input.value === null).filter(input => input).length === 0 &&
+      Object.values(signupInputs).find((input) => input.valid === false) === undefined
     ) {
       setCanBeSubmitted(true)
     }
   }
 
   const innerForm = isLogin ? (
-    <form method='POST' action='' className='log-form log-form--login'>
-      <InnerLabelInput name='email' type='email' key='email'>
+    <form onSubmit={handleSubmit} className='log-form log-form--login'>
+      <InnerLabelInput
+        name='email'
+        type='email'
+        key='email'
+        handleInputChange={handleInputChangeOnLogin}
+      >
         E-mail
       </InnerLabelInput>
-      <InnerLabelInput name='password' type='password' key='password'>
+      <InnerLabelInput
+        name='password'
+        type='password'
+        key='password'
+        handleInputChange={handleInputChangeOnLogin}
+      >
         Password
       </InnerLabelInput>
-      <Link to='/welcome'>
+      {/* <Link to='/welcome'> */}
         <Button className='btn-secondary log-form--button' handleClick={login}>
           Login
         </Button>
-      </Link>
+      {/* </Link> */}
     </form>
   ) : (
     <form
@@ -160,9 +203,9 @@ const LogForm = ({ isLogin }) => {
       className='log-form log-form--signup'
     >
       <InnerLabelInput
-        isValid={checkValidity(inputs.firstName.value, 'firstName')}
-        handleInputChange={handleInputChange}
-        value={inputs.firstName.value}
+        isValid={checkValidity(signupInputs.firstName.value, 'firstName')}
+        handleInputChange={handleInputChangeOnSignup}
+        // value={signupInputs.firstName.value}
         name='firstName'
         type='text'
         required
@@ -170,9 +213,9 @@ const LogForm = ({ isLogin }) => {
         First name
       </InnerLabelInput>
       <InnerLabelInput
-        isValid={checkValidity(inputs.lastName.value, 'lastName')}
-        handleInputChange={handleInputChange}
-        value={inputs.lastName.value}
+        isValid={checkValidity(signupInputs.lastName.value, 'lastName')}
+        handleInputChange={handleInputChangeOnSignup}
+        // value={signupInputs.lastName.value}
         name='lastName'
         type='text'
         required
@@ -180,9 +223,9 @@ const LogForm = ({ isLogin }) => {
         Last name
       </InnerLabelInput>
       <InnerLabelInput
-        isValid={checkValidity(inputs.email.value, 'email')}
-        handleInputChange={handleInputChange}
-        value={inputs.email.value}
+        isValid={checkValidity(signupInputs.email.value, 'email')}
+        handleInputChange={handleInputChangeOnSignup}
+        // value={signupInputs.email.value}
         name='email'
         type='email'
         key='email'
@@ -191,9 +234,9 @@ const LogForm = ({ isLogin }) => {
         E-mail
       </InnerLabelInput>
       <InnerLabelInput
-        isValid={checkValidity(inputs.password.value, 'password')}
-        handleInputChange={handleInputChange}
-        value={inputs.password.value}
+        isValid={checkValidity(signupInputs.password.value, 'password')}
+        handleInputChange={handleInputChangeOnSignup}
+        // value={signupInputs.password.value}
         name='password'
         type='password'
         key='password'
@@ -214,16 +257,24 @@ const LogForm = ({ isLogin }) => {
         </Tooltip>
       </InnerLabelInput>
       <InnerLabelInput
-        isValid={checkValidity(inputs.confirmPassword.value, 'confirmPassword')}
-        handleInputChange={handleInputChange}
-        value={inputs.confirmPassword.value}
+        isValid={checkValidity(
+          signupInputs.confirmPassword.value,
+          'confirmPassword'
+        )}
+        handleInputChange={handleInputChangeOnSignup}
+        // value={signupInputs.confirmPassword.value}
         name='confirmPassword'
         type='password'
         required
       >
         Confirm your password
       </InnerLabelInput>
-      <DropdownMenu name='promotion'>-- Select your promotion --</DropdownMenu>
+      <DropdownMenu
+        name='promotion'
+        handleOptionChange={handleInputChangeOnSignup}
+      >
+        -- Select your promotion --
+      </DropdownMenu>
       <Button className='btn-secondary log-form--button' handleClick={signup}>
         Register
       </Button>
