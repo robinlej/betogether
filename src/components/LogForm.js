@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react'
-// import { Link } from 'react-router-dom'
+import { useContext, useState } from 'react'
 import Button from './Button'
 import DropdownMenu from './DropdownMenu'
 import InnerLabelInput from './InnerLabelInput'
 import Tooltip from './Tooltip'
+import { UserContext } from '../App'
 
 import './stylesheets/logform.css'
 
 const LogForm = ({ isLogin }) => {
+  const {setToken} = useContext(UserContext)
+
   const regexTable = {
     firstName:
       /^[A-Za-z\u00C0-\u00FF]([A-Za-z\u00C0-\u00FF\'\-]?)+([\ A-Za-z\u00C0-\u00FF][A-Za-z\u00C0-\u00FF\'\-]+)?$/,
@@ -59,8 +61,16 @@ const LogForm = ({ isLogin }) => {
      }
    })
 
-  useEffect(() => {
-    // console.log("inside useEffect: ", isLoginSubmitted);
+  function setCookie(cname, cvalue, exdays) {
+    const d = new Date()
+    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000)
+    let expires = 'expires=' + d.toUTCString()
+    document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/; SameSite=Lax;'
+  }
+
+  const login = () => {
+    setIsLoginSubmitted(true)
+    
     if (isLoginSubmitted) {
       fetch('https://be-together-backend.herokuapp.com/login/', {
         method: 'POST',
@@ -73,22 +83,26 @@ const LogForm = ({ isLogin }) => {
           password: loginInputs.password.value,
         }),
       })
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        console.log(data)
-        if (data.error) {
+        .then((response) => {
+          return response.json()
+        })
+        .then((data) => {
+          setToken(data.token)
+          setCookie('token', data.token, 7)
+          if (data.error) {
+            setIsLoginSubmitted(false)
+          }
+        })
+        .catch((err) => {
+          console.error(err)
           setIsLoginSubmitted(false)
-        }
-      })
-      .catch(err => {
-        console.error(err)
-      })
+        })
     }
-  }, [isLoginSubmitted])
+  }
 
-  useEffect(() => {
+  const signup = () => {
+    if (canBeSubmitted) setIsSignupSubmitted(true)
+
     if (isSignupSubmitted) {
       fetch('https://be-together-backend.herokuapp.com/users/', {
         method: 'POST',
@@ -102,21 +116,18 @@ const LogForm = ({ isLogin }) => {
           email: signupInputs.email.value,
           password: signupInputs.password.value,
           promotion: parseInt(signupInputs.promotion.value),
-        })
+        }),
       })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(err => console.error(err))
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data)
+          setIsSignupSubmitted(false)
+        })
+        .catch((err) => {
+          console.error(err)
+          setIsSignupSubmitted(false)
+        })
     }
-  }, [isSignupSubmitted])
-
-  const login = () => {
-    setIsLoginSubmitted(true)
-    // console.log("inside login: ", isLoginSubmitted)
-  }
-
-  const signup = () => {
-    if (canBeSubmitted) setIsSignupSubmitted(true)
   }
 
   const handleSubmit = (e) => {
