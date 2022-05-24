@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .clickable-img__wrapper {
+      position:relative;
+      background: white;
+      /* z-index:1; */
+    }
+
+    .clickable-img__overlay {
+      background-color: #fff;
+      position:absolute;
+      inset:0;
+
+    }
+  </style>
+</head>
+<body>
+  <div class="clickable-img__wrapper">
+    <img src="https://unsplash.it/300" class="clickable-img" />
+    <div class="clickable-img__overlay"></div>
+  </div>
+</body>
+</html>
