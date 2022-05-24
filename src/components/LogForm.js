@@ -3,7 +3,7 @@ import Button from './Button'
 import DropdownMenu from './DropdownMenu'
 import InnerLabelInput from './InnerLabelInput'
 import Tooltip from './Tooltip'
-import { UserContext } from '../App'
+import { setCookie, UserContext } from '../App'
 
 import './stylesheets/logform.css'
 
@@ -60,13 +60,6 @@ const LogForm = ({ isLogin }) => {
        value: null,
      }
    })
-
-  function setCookie(cname, cvalue, exdays) {
-    const d = new Date()
-    d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000)
-    let expires = 'expires=' + d.toUTCString()
-    document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/; SameSite=Lax;'
-  }
 
   const login = () => {
     setIsLoginSubmitted(true)
@@ -147,7 +140,6 @@ const LogForm = ({ isLogin }) => {
     setSignupInputs(newInputs)
     
     checkFormValidity()
-    console.log(signupInputs);
   }
 
   const handleInputChangeOnLogin = (e) => {
