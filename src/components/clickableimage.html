@@ -6,24 +6,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+body {
+  background:black;
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+}
+
     .clickable-img__wrapper {
       position:relative;
-      background: white;
-      /* z-index:1; */
+      max-width:fit-content;
+      cursor:pointer;
+      background-color: white;
+    }
+    
+    .clickable-img__container {
+      transition: opacity .5s ease-in-out;
+
+    }
+
+    .clickable-img__container:hover {
+      opacity: .7;
     }
 
     .clickable-img__overlay {
-      background-color: #fff;
-      position:absolute;
+      background-color:white;
+      position: absolute;
       inset:0;
-
+      z-index:-1;
     }
+
+    .clickable-img {
+      max-width: 300px;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display:block;
+    }
+
+
   </style>
 </head>
 <body>
   <div class="clickable-img__wrapper">
-    <img src="https://unsplash.it/300" class="clickable-img" />
-    <div class="clickable-img__overlay"></div>
+    <div class="clickable-img__container">
+      <img src="https://unsplash.it/300" class="clickable-img" />
+      <div class="clickable-img__overlay"></div>
+    </div>
   </div>
+
 </body>
 </html>

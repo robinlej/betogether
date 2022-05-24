@@ -1,0 +1,29 @@
+.clickable-img__wrapper {
+  position:relative;
+  max-width:fit-content;
+  cursor:pointer;
+  background-color: white;
+}
+
+.clickable-img__container {
+  transition: opacity .5s ease-in-out;
+
+}
+
+.clickable-img__container:hover {
+  opacity: .7;
+}
+
+.clickable-img__overlay {
+  background-color:white;
+  position: absolute;
+  inset:0;
+  z-index:-1;
+}
+
+.clickable-img {
+  max-width: 300px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display:block;
+}
