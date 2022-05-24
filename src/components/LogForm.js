@@ -70,7 +70,7 @@ const LogForm = ({ isLogin }) => {
 
   const login = () => {
     setIsLoginSubmitted(true)
-    
+
     if (isLoginSubmitted) {
       fetch('https://be-together-backend.herokuapp.com/login/', {
         method: 'POST',
@@ -83,20 +83,20 @@ const LogForm = ({ isLogin }) => {
           password: loginInputs.password.value,
         }),
       })
-        .then((response) => {
-          return response.json()
-        })
-        .then((data) => {
-          setToken(data.token)
-          setCookie('token', data.token, 7)
-          if (data.error) {
-            setIsLoginSubmitted(false)
-          }
-        })
-        .catch((err) => {
-          console.error(err)
+      .then((response) => {
+        return response.json()
+      })
+      .then((data) => {
+        setToken(data.token)
+        setCookie('token', data.token, 7)
+        if (data.error) {
           setIsLoginSubmitted(false)
-        })
+        }
+      })
+      .catch((err) => {
+        console.error(err)
+        setIsLoginSubmitted(false)
+      })
     }
   }
 
@@ -200,17 +200,13 @@ const LogForm = ({ isLogin }) => {
       >
         Password
       </InnerLabelInput>
-      {/* <Link to='/welcome'> */}
-        <Button className='btn-secondary log-form--button' handleClick={login}>
-          Login
-        </Button>
-      {/* </Link> */}
+      <Button className='btn-secondary log-form--button' handleClick={login}>
+        Login
+      </Button>
     </form>
   ) : (
     <form
       onSubmit={handleSubmit}
-      // method='POST'
-      // action='https://infinite-oasis-89157.herokuapp.com/users/'
       className='log-form log-form--signup'
     >
       <InnerLabelInput
