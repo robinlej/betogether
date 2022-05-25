@@ -21,9 +21,9 @@ const LogForm = ({ isLogin }) => {
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*\-]).{8,}$/,
   }
 
-  const [isLoginSubmitted, setIsLoginSubmitted] = useState(false)
   const [isSignupSubmitted, setIsSignupSubmitted] = useState(false)
   const [canBeSubmitted, setCanBeSubmitted] = useState(false)
+  const [isAccountCreated, setIsAccountCreated] = useState(false)
 
   const [signupInputs, setSignupInputs] = useState({
     firstName: {
@@ -62,42 +62,41 @@ const LogForm = ({ isLogin }) => {
    })
 
   const login = () => {
-    setIsLoginSubmitted(true)
-
-    if (isLoginSubmitted) {
-      fetch('https://be-together-backend.herokuapp.com/login/', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: loginInputs.email.value,
-          password: loginInputs.password.value,
-        }),
-      })
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        setToken(data.token)
-        setCookie('token', data.token, 7)
-        if (data.error) {
-          setIsLoginSubmitted(false)
-        }
-      })
-      .catch((err) => {
-        console.error(err)
-        setIsLoginSubmitted(false)
-      })
-    }
+    fetch('https://be-together-backend.herokuapp.com/login/', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: loginInputs.email.value,
+        password: loginInputs.password.value,
+      }),
+    })
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      setToken(data.token)
+      setCookie('token', data.token, 7)
+    })
+    .catch((err) => {
+      console.error(err)
+    })
   }
 
-  const signup = () => {
-    if (canBeSubmitted) setIsSignupSubmitted(true)
+  const signup = (e) => {
+    if (canBeSubmitted) {
+      setIsSignupSubmitted(true)
+    } else {
+      e.target.classList.add('shake')
+      setTimeout(() => {
+        e.target.classList.remove('shake')
+      }, 500)
+    }
 
     if (isSignupSubmitted) {
-      fetch('https://be-together-backend.herokuapp.com/users/', {
+      fetch('https://be-together-backend.herokuapp.com/register/', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -111,15 +110,15 @@ const LogForm = ({ isLogin }) => {
           promotion: parseInt(signupInputs.promotion.value),
         }),
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data)
-          setIsSignupSubmitted(false)
-        })
-        .catch((err) => {
-          console.error(err)
-          setIsSignupSubmitted(false)
-        })
+      .then((response) => response.json())
+      .then((data) => {
+        setIsAccountCreated(true)
+        setIsSignupSubmitted(false)
+      })
+      .catch((err) => {
+        console.error(err)
+        setIsSignupSubmitted(false)
+      })
     }
   }
 
@@ -277,6 +276,7 @@ const LogForm = ({ isLogin }) => {
       <Button className='btn-secondary log-form--button' handleClick={signup}>
         Register
       </Button>
+      {isAccountCreated && <p>Your account has been created.</p>}
     </form>
   )
 
