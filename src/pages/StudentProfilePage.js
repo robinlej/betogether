@@ -12,6 +12,7 @@ import {
 } from "../components/StudentProfilePageComponents";
 import StudentHeader from "../components/StudentHeader";
 import StudentProfileModal from "../components/StudentProfileModal";
+import showWidget from "../components/CloudinaryWidget";
 
 
 function StudentProfilePage() {
@@ -32,21 +33,6 @@ function StudentProfilePage() {
   // const [newpassword, setNewPassword] = useState(" ");
   const [openModal, setOpenModal] = useState(false);
 
-  const showWidget = () => {
-    let widget = window.cloudinary.createUploadWidget(
-      {
-        cloudName: `georgianam22`,
-        uploadPreset: `sphkiz4b`,
-      },
-      (error, result) => {
-        if (!error && result && result.event === "success") {
-          console.log(result.info.url);
-        }
-      }
-    );
-    widget.open();
-  };
-
   return (
     <>
       <StudentHeader page='profile' />
@@ -64,7 +50,7 @@ function StudentProfilePage() {
               alt='ProfilePicture'
               style={{ height: '150px' }}
             />
-            <UploadBtn onClick={showWidget}>
+            <UploadBtn onClick={()=> showWidget("UserProfilePicture")}>
               <UploadImg></UploadImg>Upload
             </UploadBtn>
           </ProfileImageUpload>

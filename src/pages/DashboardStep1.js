@@ -2,6 +2,11 @@ import Button from '../components/Button'
 import OuterLabelInput from '../components/OuterLabelInput'
 import OuterLabelFileInput from '../components/OuterLabelFileInput'
 import OuterLabelTextarea from '../components/OuterLabelTextarea'
+import showWidget from '../components/CloudinaryWidget'
+import { useState } from 'react'
+
+const DashboardStep1 = ({ nextPage }) => {
+const [uploadConfirmation, setUploadConfirmation] = useState("Nothing was yet uploaded")
 import { useContext, useState } from 'react'
 import { UserContext } from '../App'
 
@@ -22,6 +27,7 @@ const DashboardStep1 = ({ nextPage }) => {
 
     setInputs(newInputs)
   }
+
 
   const handleClick = (e) => {
     e.preventDefault()
@@ -78,13 +84,13 @@ const DashboardStep1 = ({ nextPage }) => {
           >
             Description *
           </OuterLabelTextarea>
-          <div className='flex'>
-            <OuterLabelFileInput name='mockupImg' accept='image/*'>
-              Add a Mockup
+          <div className='flex' style={{"gap":"2em"}}>
+            <OuterLabelFileInput handleClick={()=> showWidget("UserMockupImages")} value='Add a Mockup' name='mockup' accept='image/*'>
             </OuterLabelFileInput>
-            <OuterLabelFileInput name='dbSchemaImg' accept='image/*'>
-              Add a Database Schema
+            <div className='file-added-confirmation'>{uploadConfirmation}</div>
+            <OuterLabelFileInput handleClick={()=> showWidget("UserDbSchemaImages")} value='Add a Database Schema' name='db-schema' accept='image/*'>
             </OuterLabelFileInput>
+            <div className='file-added-confirmation'>{uploadConfirmation}</div>
           </div>
           {/* <OuterLabelInput name='links' type='text'>
             Add Links
