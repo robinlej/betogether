@@ -6,7 +6,7 @@ import { useContext, useState } from 'react'
 import { UserContext } from '../App'
 
 const DashboardStep1 = ({ nextPage }) => {
-  const {token} = useContext(UserContext)
+  const { token, userInfo } = useContext(UserContext)
 
   const [inputs, setInputs] = useState({
     projectTitle: null,
@@ -38,7 +38,7 @@ const DashboardStep1 = ({ nextPage }) => {
           "description": inputs.description,
           "database_schema_picture": inputs.dbSchemaImg,
           "mockup_picture": inputs.mockupImg,
-          "user": 1,
+          "user": userInfo.id,
           "group_project": 1
         })
       })
@@ -52,6 +52,10 @@ const DashboardStep1 = ({ nextPage }) => {
     }
     else {
       console.log('Please provide a title and a description.')
+      e.target.classList.add('shake')
+      setTimeout(() => {
+        e.target.classList.remove('shake')
+      }, 500)
     }
   }
 

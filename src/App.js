@@ -3,7 +3,7 @@ import StudentProfilePage from './pages/StudentProfilePage.js'
 import StudentDashboard from './pages/StudentDashboard'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import StudentWelcomePage from './pages/StudentWelcomePage.js'
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 // import TestComponent from './pages/signup-test.js'
 
 export const UserContext = createContext()
@@ -33,11 +33,45 @@ function getCookie(cname) {
 }
 
 export function App() {
-
   const [token, setToken] = useState(getCookie('token'))
+  const [userInfo, setUserInfo] = useState(null)
+
+  useEffect(() => {
+    async function fetchData() {
+      if (token) {
+        const userData = await fetch('https://be-together-backend.herokuapp.com/users/profile', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${token}`,
+          },
+        })
+        .then((res) => res.json())
+        .then((data) => data)
+        .catch(err => console.error(err))
+  
+        setUserInfo({
+          id: userData.id,
+          email: userData.email,
+          firstName: userData.first_name,
+          lastName: userData.last_name,
+          groups: userData.groups,
+          isCoach: userData.is_coach,
+          isStaff: userData.is_staff,
+          profilePicture: userData.profile_picture,
+          promotion: userData.promotion,
+          uniqueID: userData.uniqueID,
+          userPermissions: userData.user_permissions
+        })
+      } else if (!token) {
+        setUserInfo(null)
+      }
+    }
+    fetchData()
+  }, [token])
 
   return (
-    <UserContext.Provider value={{ token, setToken }}>
+    <UserContext.Provider value={{ token, setToken, userInfo }}>
       <div className='App'>
         <Router>
           <Routes>
