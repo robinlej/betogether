@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react'
-// import { Link } from 'react-router-dom'
+import { useContext, useState } from 'react'
 import Button from './Button'
 import DropdownMenu from './DropdownMenu'
 import InnerLabelInput from './InnerLabelInput'
 import Tooltip from './Tooltip'
+import { setCookie, UserContext } from '../App'
 
 import './stylesheets/logform.css'
 
 const LogForm = ({ isLogin }) => {
+  const {setToken} = useContext(UserContext)
+
   const regexTable = {
     firstName:
       /^[A-Za-z\u00C0-\u00FF]([A-Za-z\u00C0-\u00FF\'\-]?)+([\ A-Za-z\u00C0-\u00FF][A-Za-z\u00C0-\u00FF\'\-]+)?$/,
@@ -19,9 +21,9 @@ const LogForm = ({ isLogin }) => {
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*\-]).{8,}$/,
   }
 
-  const [isLoginSubmitted, setIsLoginSubmitted] = useState(false)
   const [isSignupSubmitted, setIsSignupSubmitted] = useState(false)
   const [canBeSubmitted, setCanBeSubmitted] = useState(false)
+  const [isAccountCreated, setIsAccountCreated] = useState(false)
 
   const [signupInputs, setSignupInputs] = useState({
     firstName: {
@@ -59,38 +61,42 @@ const LogForm = ({ isLogin }) => {
      }
    })
 
-  useEffect(() => {
-    // console.log("inside useEffect: ", isLoginSubmitted);
-    if (isLoginSubmitted) {
-      fetch('https://be-together-backend.herokuapp.com/login/', {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: loginInputs.email.value,
-          password: loginInputs.password.value,
-        }),
-      })
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        console.log(data)
-        if (data.error) {
-          setIsLoginSubmitted(false)
-        }
-      })
-      .catch(err => {
-        console.error(err)
-      })
-    }
-  }, [isLoginSubmitted])
+  const login = () => {
+    fetch('https://be-together-backend.herokuapp.com/login/', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: loginInputs.email.value,
+        password: loginInputs.password.value,
+      }),
+    })
+    .then((response) => {
+      return response.json()
+    })
+    .then((data) => {
+      setToken(data.token)
+      setCookie('token', data.token, 7)
+    })
+    .catch((err) => {
+      console.error(err)
+    })
+  }
 
-  useEffect(() => {
+  const signup = (e) => {
+    if (canBeSubmitted) {
+      setIsSignupSubmitted(true)
+    } else {
+      e.target.classList.add('shake')
+      setTimeout(() => {
+        e.target.classList.remove('shake')
+      }, 500)
+    }
+
     if (isSignupSubmitted) {
-      fetch('https://be-together-backend.herokuapp.com/users/', {
+      fetch('https://be-together-backend.herokuapp.com/register/', {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -102,21 +108,18 @@ const LogForm = ({ isLogin }) => {
           email: signupInputs.email.value,
           password: signupInputs.password.value,
           promotion: parseInt(signupInputs.promotion.value),
-        })
+        }),
       })
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(err => console.error(err))
+      .then((response) => response.json())
+      .then((data) => {
+        setIsAccountCreated(true)
+        setIsSignupSubmitted(false)
+      })
+      .catch((err) => {
+        console.error(err)
+        setIsSignupSubmitted(false)
+      })
     }
-  }, [isSignupSubmitted])
-
-  const login = () => {
-    setIsLoginSubmitted(true)
-    // console.log("inside login: ", isLoginSubmitted)
-  }
-
-  const signup = () => {
-    if (canBeSubmitted) setIsSignupSubmitted(true)
   }
 
   const handleSubmit = (e) => {
@@ -136,7 +139,6 @@ const LogForm = ({ isLogin }) => {
     setSignupInputs(newInputs)
     
     checkFormValidity()
-    console.log(signupInputs);
   }
 
   const handleInputChangeOnLogin = (e) => {
@@ -189,17 +191,13 @@ const LogForm = ({ isLogin }) => {
       >
         Password
       </InnerLabelInput>
-      {/* <Link to='/welcome'> */}
-        <Button className='btn-secondary log-form--button' handleClick={login}>
-          Login
-        </Button>
-      {/* </Link> */}
+      <Button className='btn-secondary log-form--button' handleClick={login}>
+        Login
+      </Button>
     </form>
   ) : (
     <form
       onSubmit={handleSubmit}
-      // method='POST'
-      // action='https://infinite-oasis-89157.herokuapp.com/users/'
       className='log-form log-form--signup'
     >
       <InnerLabelInput
@@ -278,6 +276,7 @@ const LogForm = ({ isLogin }) => {
       <Button className='btn-secondary log-form--button' handleClick={signup}>
         Register
       </Button>
+      {isAccountCreated && <p>Your account has been created.</p>}
     </form>
   )
 
