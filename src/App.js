@@ -71,7 +71,7 @@ export function App() {
   }, [token])
 
   return (
-    <UserContext.Provider value={{ token, setToken, userInfo }}>
+    <UserContext.Provider value={{ token, setToken, userInfo, setUserInfo }}>
       <div className='App'>
         <Router>
           <Routes>

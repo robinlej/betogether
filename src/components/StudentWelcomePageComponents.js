@@ -13,9 +13,7 @@ export const WelcomePageDiv = styled.div`
     gap: 3em;
 `
 
-export const WelcomePageProfilePic = styled.img.attrs({
-    src: 'assets/img/user-profile-picture.png'
-})`
+export const WelcomePageProfilePic = styled.img`
     width: 437px;
     height: 477px;
     left: 215px;
