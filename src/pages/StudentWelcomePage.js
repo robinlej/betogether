@@ -74,9 +74,9 @@ function StudentWelcomePage() {
         <WelcomePageDiv>
           <WelcomePageProfileDiv>
             <WelcomePagePromotionFlag>
-              <p style={{ fontWeight: "bold" }}>Johnsons 7</p>
+              <p style={{ fontWeight: "bold" }}>{userInfo.promotion?.name}</p>
             </WelcomePagePromotionFlag>
-            <WelcomePageProfilePic></WelcomePageProfilePic>
+            <WelcomePageProfilePic src={userInfo.profilePicture}></WelcomePageProfilePic>
           </WelcomePageProfileDiv>
           <WelcomePageTitleDiv>
             <h1>Welcome {`${userInfo.firstName} ${userInfo.lastName}`}</h1>

@@ -1,17 +1,26 @@
+import { useContext } from 'react'
+import { UserContext } from '../App'
 import { NavLink } from './StudentHeaderElements'
 import './stylesheets/UserProfilePreview.css'
 
-const UserProfilePreview = ({ name, promotion }) => {
-  return (
+const UserProfilePreview = () => {
+
+  const { userInfo } = useContext(UserContext)
+
+  return (userInfo &&
     <NavLink to='/profile'>
       <div className='user-profile-preview'>
         <img
           className='user-profile-preview--picture'
-          src='assets/img/janedoe.jpg'
+          src={
+            !userInfo.profilePicture
+              ? 'assets/img/user-profile-picture.png'
+              : userInfo.profilePicture
+          }
           alt='Profile picture'
         />
-        <div className='user-profile-preview--name'>{name}</div>
-        <div className='user-profile-preview--promotion'>{promotion}</div>
+        <div className='user-profile-preview--name'>{ `${userInfo?.firstName} ${userInfo?.lastName}`}</div>
+        <div className='user-profile-preview--promotion'>{userInfo?.promotion.name}</div>
       </div>
     </NavLink>
   )
