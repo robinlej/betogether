@@ -1,13 +1,12 @@
-import { useEffect } from "react";
 // Function to prompt the Cloudinary widget to upload files
 
-const showWidget = (folder) => {
-  let widget = window.cloudinary.createUploadWidget(
+const showWidget = async (folder, token) => {
+  let widget = await window.cloudinary.createUploadWidget(
     {
       cloudName: "georgianam22",
       uploadPreset: "be_together_app",
       folder: folder,
-      sources: ["local", "url"],
+      sources: ["local"],
       cropping: true,
       styles: {
         palette: {
@@ -29,36 +28,38 @@ const showWidget = (folder) => {
     },
     (error, result) => {
       if (!error && result && result.event === "success") {
-        console.log(result.info.url);
-        let profilePictureUrl = result.info.url;
-        useEffect(() => {
-          if (folder === "UserProfilePicture") {
-            fetch("https://be-together-backend.herokuapp.com/users/profile", {
-              method: "PATCH",
-              mode: "cors",
-              headers: {
-                "Content-Type": "application/json",
-                // "Authorization": `Token ${token}`
-              },
-              body: JSON.stringify({
-                profile_picture: profilePictureUrl,
-              }),
+        let url = result.info.url
+
+        if (folder === "UserProfilePicture") {
+          fetch("https://be-together-backend.herokuapp.com/users/profile", {
+            method: "PATCH",
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Token ${token}`,
+            },
+            body: JSON.stringify({
+              profile_picture: url,
+            }),
+          })
+            .then((response) => {
+              return response.json();
             })
-              .then((response) => {
-                return response.json();
-              })
-              .then((data) => {
-                console.log(data);
-              })
-              .catch((err) => {
-                console.error(err);
-              });
-          }
-        }, []);
+            .then((data) => {
+              console.log(data)
+            })
+            .catch((err) => {
+              console.error(err);
+            });
+        } else if (folder === "UserMockupImages") {
+
+        } else if (folder === "UserDbSchemaImages") {
+
+        }
       }
     }
   );
-  widget.open();
+  await widget.open();
 };
 
 export default showWidget;

@@ -3,14 +3,11 @@ import OuterLabelInput from '../components/OuterLabelInput'
 import OuterLabelFileInput from '../components/OuterLabelFileInput'
 import OuterLabelTextarea from '../components/OuterLabelTextarea'
 import showWidget from '../components/CloudinaryWidget'
-import { useState } from 'react'
-
-const DashboardStep1 = ({ nextPage }) => {
-const [uploadConfirmation, setUploadConfirmation] = useState("Nothing was yet uploaded")
 import { useContext, useState } from 'react'
 import { UserContext } from '../App'
 
 const DashboardStep1 = ({ nextPage }) => {
+  const [uploadConfirmation, setUploadConfirmation] = useState("Nothing was yet uploaded")
   const { token, userInfo } = useContext(UserContext)
 
   const [inputs, setInputs] = useState({
