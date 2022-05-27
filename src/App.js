@@ -42,14 +42,27 @@ export function App() {
         const userData = await fetch('https://be-together-backend.herokuapp.com/users/profile', {
           method: 'GET',
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Token ${token}`,
+            "Content-Type": 'application/json',
+            "Authorization": `Token ${token}`,
           },
         })
         .then((res) => res.json())
         .then((data) => data)
         .catch(err => console.error(err))
   
+        const userPromotion = await fetch('https://be-together-backend.herokuapp.com/promotion/all', {
+          method: 'GET',
+          headers: {
+            "Content-Type": 'application/json',
+            "Authorization": `Token ${token}`,
+          },
+        })
+        .then((res) => res.json())
+        .then((data) => {
+          return data.find(promotion => promotion.id === userData.promotion)
+        })
+        .catch(err => console.error(err))
+
         setUserInfo({
           id: userData.id,
           email: userData.email,
@@ -59,10 +72,12 @@ export function App() {
           isCoach: userData.is_coach,
           isStaff: userData.is_staff,
           profilePicture: userData.profile_picture,
-          promotion: userData.promotion,
+          promotion: userPromotion,
           uniqueID: userData.uniqueID,
-          userPermissions: userData.user_permissions
+          userPermissions: userData.user_permissions,
         })
+
+        console.log(userInfo)
       } else if (!token) {
         setUserInfo(null)
       }

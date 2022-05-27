@@ -7,9 +7,8 @@ import { useContext, useState } from 'react'
 import { UserContext } from '../App'
 
 const DashboardStep1 = ({ nextPage }) => {
+  const [uploadConfirmation, setUploadConfirmation] = useState("Nothing was yet uploaded")
   const { token, userInfo } = useContext(UserContext)
-  
-  const [uploadConfirmation, setUploadConfirmation] = useState("Nothing was uploaded yet")
 
   const [inputs, setInputs] = useState({
     projectTitle: null,
@@ -34,8 +33,8 @@ const DashboardStep1 = ({ nextPage }) => {
       fetch('https://be-together-backend.herokuapp.com/learner_projects/new', {
         method: 'POST',
         headers: {
-          "Content-Type": 'application/json',
-          "Authorization": `Token ${token}`,
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
         },
         body: JSON.stringify({
           "name": inputs.projectTitle,

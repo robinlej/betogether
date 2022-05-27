@@ -13,7 +13,7 @@ export const WelcomePageDiv = styled.div`
     gap: 3em;
 `
 
-export const WelcomePageProfilePic = styled.img`
+export const WelcomePageDefaultProfilePic = styled.img`
     width: 437px;
     height: 477px;
     left: 215px;
@@ -22,6 +22,15 @@ export const WelcomePageProfilePic = styled.img`
     transform: translate(0, -20%);
     z-index: 10;
 `
+
+export const WelcomePageProfilePic = ({ src }) => {
+
+    return (
+      <WelcomePageDefaultProfilePic
+        src={!src ? 'assets/img/user-profile-picture.png' : src}
+      />
+    )
+}
 
 export const WelcomePagePromotionFlag = styled.div`
     width: 207px;

@@ -66,23 +66,6 @@ function StudentWelcomePage() {
   //       "https://cdn.dribbble.com/users/5922214/screenshots/18191838/media/24575743db9bbb2bd5388321c4780e0e.png?compress=1&resize=1200x900&vertical=top",
   //   },
   // ];
-  const [picture, setPicture] = useState(' ')
-  const [fallback, setFallback] = useState(false);
-
-  useEffect(() => {
-    if(userInfo){
-      setPicture(userInfo.profilePicture);
-    }
-  },[userInfo])
-
-  const reloadSrc = e => { 
-    if(fallback){
-      e.target.src = "assets/img/user-profile-picture.png";
-    }else{
-      e.target.src = picture
-      setFallback(true)
-    }
-  }
 
   return userInfo ? (
     <>
@@ -91,9 +74,9 @@ function StudentWelcomePage() {
         <WelcomePageDiv>
           <WelcomePageProfileDiv>
             <WelcomePagePromotionFlag>
-              <p style={{ fontWeight: "bold" }}>Johnsons 7</p>
+              <p style={{ fontWeight: "bold" }}>{userInfo.promotion?.name}</p>
             </WelcomePagePromotionFlag>
-            <WelcomePageProfilePic src={picture} onError={reloadSrc}></WelcomePageProfilePic>
+            <WelcomePageProfilePic src={userInfo.profilePicture}></WelcomePageProfilePic>
           </WelcomePageProfileDiv>
           <WelcomePageTitleDiv>
             <h1>Welcome {`${userInfo.firstName} ${userInfo.lastName}`}</h1>

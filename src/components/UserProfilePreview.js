@@ -1,9 +1,11 @@
+import { useContext } from 'react'
+import { UserContext } from '../App'
 import { NavLink } from './StudentHeaderElements'
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../App";
 import './stylesheets/UserProfilePreview.css'
 
-const UserProfilePreview = ({ name, promotion }) => {
+const UserProfilePreview = () => {
   const { token, userInfo } = useContext(UserContext)
   const [picture, setPicture] = useState(' ')
   const [fallback, setFallback] = useState(false);
@@ -22,7 +24,7 @@ const UserProfilePreview = ({ name, promotion }) => {
       setFallback(true)
     }
   }
-  return (
+  return (userInfo &&
     <NavLink to='/profile'>
       <div className='user-profile-preview'>
         <img
@@ -30,8 +32,8 @@ const UserProfilePreview = ({ name, promotion }) => {
           src={picture} onError={reloadSrc}
           alt='Profile picture'
         />
-        <div className='user-profile-preview--name'>{name}</div>
-        <div className='user-profile-preview--promotion'>{promotion}</div>
+        <div className='user-profile-preview--name'>{ `${userInfo?.firstName} ${userInfo?.lastName}`}</div>
+        <div className='user-profile-preview--promotion'>{userInfo?.promotion.name}</div>
       </div>
     </NavLink>
   )
