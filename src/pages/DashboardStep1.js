@@ -7,9 +7,10 @@ import { useContext, useState } from 'react'
 import { UserContext } from '../App'
 
 const DashboardStep1 = ({ nextPage }) => {
+  const [uploadConfirmation, setUploadConfirmation] = useState(
+    'Nothing was uploaded yet'
+  )
   const { token, userInfo } = useContext(UserContext)
-  
-  const [uploadConfirmation, setUploadConfirmation] = useState("Nothing was uploaded yet")
 
   const [inputs, setInputs] = useState({
     projectTitle: null,
@@ -20,41 +21,39 @@ const DashboardStep1 = ({ nextPage }) => {
   })
 
   const handleInputChange = (e) => {
-    const newInputs = {...inputs}
+    const newInputs = { ...inputs }
     newInputs[e.target.name] = e.target.value
 
     setInputs(newInputs)
   }
 
-
   const handleClick = (e) => {
     e.preventDefault()
 
-    if(inputs.projectTitle && inputs.description) {
+    if (inputs.projectTitle && inputs.description) {
       fetch('https://be-together-backend.herokuapp.com/learner_projects/new', {
         method: 'POST',
         headers: {
-          "Content-Type": 'application/json',
-          "Authorization": `Token ${token}`,
+          'Content-Type': 'application/json',
+          Authorization: `Token ${token}`,
         },
         body: JSON.stringify({
-          "name": inputs.projectTitle,
-          "description": inputs.description,
-          "database_schema_picture": inputs.dbSchemaImg,
-          "mockup_picture": inputs.mockupImg,
-          "user": userInfo.id,
-          "group_project": 1
+          name: inputs.projectTitle,
+          description: inputs.description,
+          database_schema_picture: inputs.dbSchemaImg,
+          mockup_picture: inputs.mockupImg,
+          user: userInfo.id,
+          group_project: 1,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data)
+          console.log('Your project has been submitted')
+          nextPage()
         })
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        console.log('Your project has been submitted')
-        nextPage()
-      })
-      .catch(err => console.error(err))
-    }
-    else {
+        .catch((err) => console.error(err))
+    } else {
       console.log('Please provide a title and a description.')
       e.target.classList.add('shake')
       setTimeout(() => {
@@ -82,12 +81,20 @@ const DashboardStep1 = ({ nextPage }) => {
           >
             Description *
           </OuterLabelTextarea>
-          <div className='flex' style={{"gap":"2em"}}>
-            <OuterLabelFileInput handleClick={()=> showWidget("UserMockupImages")} value='Add a Mockup' name='mockup' accept='image/*'>
-            </OuterLabelFileInput>
+          <div className='flex' style={{ gap: '2em' }}>
+            <OuterLabelFileInput
+              handleClick={() => showWidget('UserMockupImages')}
+              value='Add a Mockup'
+              name='mockup'
+              accept='image/*'
+            ></OuterLabelFileInput>
             <div className='file-added-confirmation'>{uploadConfirmation}</div>
-            <OuterLabelFileInput handleClick={()=> showWidget("UserDbSchemaImages")} value='Add a Database Schema' name='db-schema' accept='image/*'>
-            </OuterLabelFileInput>
+            <OuterLabelFileInput
+              handleClick={() => showWidget('UserDbSchemaImages')}
+              value='Add a Database Schema'
+              name='db-schema'
+              accept='image/*'
+            ></OuterLabelFileInput>
             <div className='file-added-confirmation'>{uploadConfirmation}</div>
           </div>
           {/* <OuterLabelInput name='links' type='text'>

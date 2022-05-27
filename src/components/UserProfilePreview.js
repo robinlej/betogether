@@ -1,8 +1,6 @@
-import { useContext } from 'react'
-import { UserContext } from '../App'
-import { NavLink } from './StudentHeaderElements'
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../App";
+import { NavLink } from './StudentHeaderElements'
 import './stylesheets/UserProfilePreview.css'
 
 const UserProfilePreview = () => {
