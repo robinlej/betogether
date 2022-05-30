@@ -7,9 +7,11 @@ import { useContext, useState } from 'react'
 import { UserContext } from '../App'
 
 const DashboardStep1 = ({ nextPage }) => {
-  const [uploadConfirmation, setUploadConfirmation] = useState(
-    'Nothing was uploaded yet'
-  )
+  const [uploadConfirmation, setUploadConfirmation] = useState({
+    mockup:'Nothing was uploaded yet',
+    db:'Nothing was uploaded yet',
+
+})
   const { token, userInfo } = useContext(UserContext)
 
   const [inputs, setInputs] = useState({
@@ -19,12 +21,29 @@ const DashboardStep1 = ({ nextPage }) => {
     dbSchemaImg: null,
     // links: null
   })
-
+  
   const handleInputChange = (e) => {
     const newInputs = { ...inputs }
     newInputs[e.target.name] = e.target.value
 
     setInputs(newInputs)
+  }
+
+  const getMockupPictureUrl = async () => {
+    await showWidget('UserMockupImages', token, updateMockUpPicture)
+  }
+
+  const getDbPictureUrl = async () => {
+    await showWidget('UserDbSchemaImages', token, updatedBPicture)
+  }
+
+  const updateMockUpPicture = (url) => {
+    setInputs({...inputs, mockupImg: url})
+    setUploadConfirmation({...uploadConfirmation, mockup:'Mockup image uploaded'})
+  }
+  const updatedBPicture = (url) => {
+    setInputs({...inputs, dbSchemaImg: url})
+    setUploadConfirmation({...uploadConfirmation, db:'Database schema image uploaded'})
   }
 
   const handleClick = (e) => {
@@ -83,19 +102,19 @@ const DashboardStep1 = ({ nextPage }) => {
           </OuterLabelTextarea>
           <div className='flex' style={{ gap: '2em' }}>
             <OuterLabelFileInput
-              handleClick={() => showWidget('UserMockupImages')}
+              handleClick={getMockupPictureUrl}
               value='Add a Mockup'
               name='mockup'
               accept='image/*'
             ></OuterLabelFileInput>
-            <div className='file-added-confirmation'>{uploadConfirmation}</div>
+            <div className='file-added-confirmation'>{uploadConfirmation.mockup}</div>
             <OuterLabelFileInput
-              handleClick={() => showWidget('UserDbSchemaImages')}
+              handleClick={getDbPictureUrl}
               value='Add a Database Schema'
               name='db-schema'
               accept='image/*'
             ></OuterLabelFileInput>
-            <div className='file-added-confirmation'>{uploadConfirmation}</div>
+            <div className='file-added-confirmation'>{uploadConfirmation.db}</div>
           </div>
           {/* <OuterLabelInput name='links' type='text'>
             Add Links
