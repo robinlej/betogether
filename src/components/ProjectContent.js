@@ -7,11 +7,11 @@ const ProjectContent = ({ project, isExpanded }) => {
     content = (
       <>
         <p>{description}</p>
-        <div
-          className='dashboard-project-list--item--content--imgs'
-        >
-          {project.dbSchemaPic && <img src={project.dbSchemaPic} />}
-          {project.projectSketch && <img src={project.projectSketch} />}
+        <div className='dashboard-project-list--item--content--imgs'>
+          {project.database_schema_picture && (
+            <img src={project.database_schema_picture} />
+          )}
+          {project.mockup_picture && <img src={project.mockup_picture} />}
         </div>
       </>
     )
@@ -25,7 +25,7 @@ const ProjectContent = ({ project, isExpanded }) => {
 
   return (
     <div className='dashboard-project-list--item--content'>
-      <h2>{project.projectTitle}</h2>
+      <h2>{project.name}</h2>
       { content }
     </div>
   )

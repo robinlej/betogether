@@ -5,56 +5,34 @@ import ProgressWheel from '../components/ProgressWheel'
 
 import './ProjectPreview.css'
 import '../stylesheets/utils.css'
+import { useContext, useEffect } from 'react'
+import { UserContext } from '../App'
+import { HoldSpinner } from '../components/HoldSpinner'
 
-const DashboardStep2 = ({ nextPage }) => {
-  // To be updated when the API & DB is ready
-  // array of objects with: student name, picture, title of the project, description, db schema image, project sketch, links
-  const projects = [
-    {
-      id: 1,
-      name: 'Dylan',
-      profilePic: 'assets/img/janedoe.jpg',
-      projectTitle: 'My Great Project',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      dbSchemaPic: 'https://unsplash.it/300',
-      projectSketch: 'https://unsplash.it/300',
-      links: '',
-    },
-    {
-      id:2,
-      name: 'Charlotte',
-      profilePic: 'assets/img/janedoe.jpg',
-      projectTitle: 'My Great Project',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      dbSchemaPic: 'https://unsplash.it/300',
-      projectSketch: 'https://unsplash.it/300',
-      links: '',
-    },
-    {
-      id: 3,
-      name: 'Anthony',
-      profilePic: 'assets/img/janedoe.jpg',
-      projectTitle: 'My Great Project',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      dbSchemaPic: 'https://unsplash.it/300',
-      projectSketch: 'https://unsplash.it/300',
-      links: '',
-    },
-  ]
-  const totalProjects = 3
+const DashboardStep2 = ({ nextPage, projects, maxStudents, updateProjects }) => {
+  const { userInfo } = useContext(UserContext)
+  
+  const { expandedItem, expandItem } = useExpandItem()
 
-  const {expandedItem, expandItem} = useExpandItem()
+  // call the DB every 5s to check for new projects
+  useEffect(() => {
+    if (projects?.length !== maxStudents) {
+      const updater = setInterval(updateProjects, 5000)
 
-  if (projects.length === totalProjects) {
-    setTimeout(() => {
-      nextPage()
-    }, 1000)
-  }
+      return () => clearInterval(updater)
+    }
+  }, [])
 
-  return (
+  // if all the projects are submitted, go to the next page
+  useEffect(() => {
+    if (projects?.length === maxStudents) {
+      setTimeout(() => {
+        nextPage()
+      }, 1000)
+    }
+  }, [projects])
+
+  return (userInfo && projects) ? (
     <main className='main-with-aside'>
 
       <section className='dashboard-project-list main-with-aside__main-content'>
@@ -71,9 +49,11 @@ const DashboardStep2 = ({ nextPage }) => {
       </section>
 
       <aside className='aside-right'>
-        <ProgressWheel projectsSubmitted={projects.length} totalProjects={totalProjects} />
+        <ProgressWheel projectsSubmitted={projects.length} totalProjects={maxStudents} />
       </aside>
     </main>
+  ) : (
+    <HoldSpinner />
   )
 }
 
