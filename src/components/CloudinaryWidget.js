@@ -1,13 +1,13 @@
 // Function to prompt the Cloudinary widget to upload files
 
-const showWidget = async (folder, token) => {
+const showWidget = async (folder, token, callback) => {
   let widget = await window.cloudinary.createUploadWidget(
     {
       cloudName: "georgianam22",
       uploadPreset: "be_together_app",
       folder: folder,
       sources: ["local"],
-      cropping: true,
+      cropping: false,
       styles: {
         palette: {
           window: "#0B253A",
@@ -26,10 +26,12 @@ const showWidget = async (folder, token) => {
         },
       },
     },
-    (error, result) => {
+    function (error, result) {
       if (!error && result && result.event === "success") {
-        let url = result.info.url
+        // Assigning the uploaded image to a variable
 
+        let url = result.info.url;
+        // Depending on the folder it was uploaded to, it does something different
         if (folder === "UserProfilePicture") {
           fetch("https://be-together-backend.herokuapp.com/users/profile", {
             method: "PATCH",
@@ -46,15 +48,15 @@ const showWidget = async (folder, token) => {
               return response.json();
             })
             .then((data) => {
-              console.log(data)
+              console.log(data);
             })
             .catch((err) => {
               console.error(err);
             });
         } else if (folder === "UserMockupImages") {
-
-        } else if (folder === "UserDbSchemaImages") {
-
+          callback(url);
+        } else {
+          callback(url);
         }
       }
     }
