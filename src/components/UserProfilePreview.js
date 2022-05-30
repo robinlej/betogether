@@ -4,7 +4,7 @@ import { NavLink } from './StudentHeaderElements'
 import './stylesheets/UserProfilePreview.css'
 
 const UserProfilePreview = () => {
-  const { token, userInfo } = useContext(UserContext)
+  const { userInfo } = useContext(UserContext)
   const [picture, setPicture] = useState(' ')
   const [fallback, setFallback] = useState(false);
 
@@ -31,7 +31,7 @@ const UserProfilePreview = () => {
           alt='Profile picture'
         />
         <div className='user-profile-preview--name'>{ `${userInfo?.firstName} ${userInfo?.lastName}`}</div>
-        <div className='user-profile-preview--promotion'>{userInfo?.promotion.name}</div>
+        <div className='user-profile-preview--promotion'>{userInfo?.promotion?.name}</div>
       </div>
     </NavLink>
   )

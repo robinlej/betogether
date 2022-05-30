@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { ReactSortable } from 'react-sortablejs'
 
 import useExpandItem from '../hooks/useExpandItem'
@@ -11,148 +11,15 @@ import './ProjectPreview.css'
 import '../components/stylesheets/ProjectSelector.css'
 import '../stylesheets/utils.css'
 import Button from '../components/Button'
+import { UserContext } from '../App'
+import { HoldSpinner } from '../components/HoldSpinner'
 
-// To be updated when the API & DB is ready
-// array of objects with: student name, picture, title of the project, description, db schema image, project sketch, links
-const PROJECTS = [
-  {
-    id: 1,
-    name: 'Dylan',
-    profilePic: 'https://thispersondoesnotexist.com/image',
-    projectTitle: 'My Great Project',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    dbSchemaPic: 'https://unsplash.it/300',
-    projectSketch: 'https://unsplash.it/300',
-    links: '',
-  },
-  {
-    id: 2,
-    name: 'Charlotte',
-    profilePic: 'https://source.unsplash.com/random',
-    projectTitle: 'My Great Project',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    dbSchemaPic: 'https://unsplash.it/300',
-    projectSketch: 'https://unsplash.it/300',
-    links: '',
-  },
-  {
-    id: 3,
-    name: 'Anthony',
-    profilePic: 'https://source.unsplash.com/user/wsanter',
-    projectTitle: 'My Great Project',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    dbSchemaPic: 'https://unsplash.it/300',
-    projectSketch: 'https://unsplash.it/300',
-    links: '',
-  },
-  {
-    id: 4,
-    name: 'Kristine',
-    profilePic: 'https://source.unsplash.com/random/?happy',
-    projectTitle: 'My Great Project',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    dbSchemaPic: 'https://unsplash.it/300',
-    projectSketch: 'https://unsplash.it/300',
-    links: '',
-  },
-  {
-    id: 5,
-    name: 'Georgiana',
-    profilePic: 'https://source.unsplash.com/random/?eat',
-    projectTitle: 'My Great Project',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    dbSchemaPic: 'https://unsplash.it/300',
-    projectSketch: 'https://unsplash.it/300',
-    links: '',
-  },
-  {
-    id: 6,
-    name: 'Tim',
-    profilePic: 'assets/img/janedoe.jpg',
-    projectTitle: 'My Great Project',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    dbSchemaPic: 'https://unsplash.it/300',
-    projectSketch: 'https://unsplash.it/300',
-    links: '',
-  },
-  {
-    id: 7,
-    name: 'Laurent',
-    profilePic: 'assets/img/janedoe.jpg',
-    projectTitle: 'My Great Project',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    dbSchemaPic: 'https://unsplash.it/300',
-    projectSketch: 'https://unsplash.it/300',
-    links: '',
-  },
-  {
-    id: 8,
-    name: 'Nashwan',
-    profilePic: 'assets/img/janedoe.jpg',
-    projectTitle: 'My Great Project',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    dbSchemaPic: 'https://unsplash.it/300',
-    projectSketch: 'https://unsplash.it/300',
-    links: '',
-  },
-  {
-    id: 9,
-    name: 'Taguhi',
-    profilePic: 'assets/img/janedoe.jpg',
-    projectTitle: 'My Great Project',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    dbSchemaPic: 'https://unsplash.it/300',
-    projectSketch: 'https://unsplash.it/300',
-    links: '',
-  },
-  {
-    id: 10,
-    name: 'Antoine',
-    profilePic: 'assets/img/janedoe.jpg',
-    projectTitle: 'My Great Project',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    dbSchemaPic: 'https://unsplash.it/300',
-    projectSketch: 'https://unsplash.it/300',
-    links: '',
-  },
-  {
-    id: 11,
-    name: 'Diogo',
-    profilePic: 'assets/img/janedoe.jpg',
-    projectTitle: 'My Great Project',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    dbSchemaPic: 'https://unsplash.it/300',
-    projectSketch: 'https://unsplash.it/300',
-    links: '',
-  },
-  {
-    id: 12,
-    name: 'Raphael',
-    profilePic: 'assets/img/janedoe.jpg',
-    projectTitle: 'My Great Project',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    dbSchemaPic: 'https://unsplash.it/300',
-    projectSketch: 'https://unsplash.it/300',
-    links: '',
-  },
-]
-
-const DashboardStep3 = ({ nextPage }) => {
+const DashboardStep3 = ({ nextPage, groupProject, projectsList, maxStudents }) => {
+  const { token, userInfo } = useContext(UserContext)
 
   const { expandedItem, expandItem } = useExpandItem()
-  const [projects, setProjects] = useState(PROJECTS)
+
+  const [projects, setProjects] = useState(projectsList)
   const projectListRef = useRef(null)
   
   useEffect(() => {
@@ -180,19 +47,49 @@ const DashboardStep3 = ({ nextPage }) => {
     }, 10)
   }, [projects])
 
-  const renderProject = (project, index) => {
+  const sendWishlist = () => {
+    if (userInfo) {
+      const wishlist = projects.slice(0,5).map(project => {
+        console.log(project)
+        return project.id
+      })
+  
+      fetch('https://be-together-backend.herokuapp.com/users/profile/vote_list/new',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Token ${token}`,
+          },
+          body: JSON.stringify({
+            whishlist: wishlist,
+            voted_by: userInfo.id,
+            group_project_id: groupProject
+          }),
+        }
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          // console.log(data)
+          nextPage()
+        })
+        .catch((err) => console.error(err))
+    }
+  }
+
+  const renderProject = (project) => {
     return (
       <ProjectPreview
         key={project.id}
         project={project}
         expandItem={expandItem}
-        isExpanded={expandedItem === project.id ? true : false}
+        isExpanded={expandedItem === project.id}
         isDraggable
       />
     )
   }
 
-  return (
+  return projects ? (
     <main className='main-with-aside'>
       <aside className='aside-left dashboard-project-list--item-rank--container'>
         {projects.map((p, i) => (
@@ -209,14 +106,14 @@ const DashboardStep3 = ({ nextPage }) => {
         setList={setProjects}
         ref={projectListRef}
       >
-        {projects.map((project, index) => {
-          return renderProject(project, index)
+        {projects.map((project) => {
+          return renderProject(project)
         })}
       </ReactSortable>
 
       <aside className='aside-right'>
         <div>
-          <ProgressWheel projectsSubmitted={20} totalProjects={20} />
+          <ProgressWheel projectsSubmitted={maxStudents} totalProjects={maxStudents} />
           <ReactSortable
             className='project-selector'
             list={projects}
@@ -227,9 +124,11 @@ const DashboardStep3 = ({ nextPage }) => {
             })}
           </ReactSortable>
         </div>
-        <Button className='btn-primary full-width' handleClick={nextPage}>VOTE</Button>
+        <Button className='btn-primary full-width' handleClick={sendWishlist}>VOTE</Button>
       </aside>
     </main>
+  ) : (
+    <HoldSpinner />
   )
 }
 
