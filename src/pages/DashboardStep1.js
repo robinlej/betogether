@@ -6,12 +6,14 @@ import showWidget from '../components/CloudinaryWidget'
 import { useContext, useState } from 'react'
 import { UserContext } from '../App'
 
-const DashboardStep1 = ({ nextPage }) => {
+
+const DashboardStep1 = ({ nextPage, groupProject, updateProjects }) => {
   const [uploadConfirmation, setUploadConfirmation] = useState({
     mockup:'Nothing was uploaded yet',
     db:'Nothing was uploaded yet',
 
 })
+
   const { token, userInfo } = useContext(UserContext)
 
   const [inputs, setInputs] = useState({
@@ -62,13 +64,14 @@ const DashboardStep1 = ({ nextPage }) => {
           database_schema_picture: inputs.dbSchemaImg,
           mockup_picture: inputs.mockupImg,
           user: userInfo.id,
-          group_project: 1,
+          group_project: groupProject,
         }),
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log(data)
+          // console.log(data)
           console.log('Your project has been submitted')
+          updateProjects()
           nextPage()
         })
         .catch((err) => console.error(err))
