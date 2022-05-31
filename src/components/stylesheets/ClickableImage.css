@@ -3,6 +3,7 @@
   max-width:fit-content;
   cursor:pointer;
   background-color: white;
+  max-width: calc(50% - .5em);
 }
 
 .clickable-img__container {
@@ -29,7 +30,7 @@
   position:absolute;
   inset: 0;
   margin:auto;
-  font-size: 5rem;
+  font-size: clamp(2rem, 5vw, 4rem);
   color:black;
   opacity: 0;
   transition: opacity .5s ease-in-out;
@@ -49,7 +50,7 @@
 .clickable-img--expanded__container {
   display: grid;
   place-items: center;
-  position: absolute;
+  position: fixed;
   inset: 0;
   background: rgba(0 0 0 / .4);
   z-index:100;

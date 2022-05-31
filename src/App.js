@@ -76,8 +76,6 @@ export function App() {
           uniqueID: userData.uniqueID,
           userPermissions: userData.user_permissions,
         })
-
-        console.log(userInfo)
       } else if (!token) {
         setUserInfo(null)
       }

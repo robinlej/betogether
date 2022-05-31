@@ -79,7 +79,7 @@
 }
 
 .dashboard-project-list--item--content {
-  max-width: 60ch;
+  width: min(60ch, calc(100% - 180px));
 }
 
 .dashboard-project-list--item--content h2 {
