@@ -7,6 +7,14 @@ const ProjectPreview = ({ project, expandItem, isExpanded, isDraggable }) => {
 
   useEffect(() => {
     projectRef.current.style.maxHeight = `calc(max(264px, ${projectRef.current.scrollHeight}px) + 2rem)`
+
+    // trick so that the images aren't cropped out in Firefox
+    // 300 ms is the duration of the transition when it expands
+    const timer = setTimeout(() => {
+      projectRef.current.style.maxHeight = `calc(max(264px, ${projectRef.current.scrollHeight}px) + 2rem)`
+    }, 300)
+
+    return () => clearTimeout(timer)
   }, [isExpanded])
 
   const expandProject = () => {
