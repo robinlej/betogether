@@ -55,14 +55,14 @@
 }
 
 .dashboard-project-list--item--profile {
-  display:grid;
-  place-items:center;
+  display:flex;
+  flex-direction: column;
+  align-items:center;
   text-align: center;
 }
 
 .dashboard-project-list--item--profile p {
   width: 10ch;
-  margin-block:auto;
 }
 
 .dashboard-project-list--item--profile-pic {
@@ -97,8 +97,8 @@
   margin-top: 2rem;
 }
 
-.dashboard-project-list--item--content--imgs img {
-  width: calc(50% - .5rem);
+.dashboard-project-list--item--content--imgs .clickable-img {
+  height:100%;
   aspect-ratio: 1;
   object-fit: cover;
 }

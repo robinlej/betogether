@@ -7,7 +7,11 @@
 
 .clickable-img__container {
   transition: opacity .5s ease-in-out;
+}
 
+.clickable-img__wrapper,
+.clickable-img__container {
+  aspect-ratio: 1;
 }
 
 .clickable-img__container:hover {
@@ -21,9 +25,33 @@
   z-index:-1;
 }
 
+.clickable-img__overlay--icon {
+  position:absolute;
+  inset: 0;
+  margin:auto;
+  font-size: 5rem;
+  color:black;
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+}
+
+.clickable-img__wrapper:hover .clickable-img__overlay--icon {
+  opacity: 1;
+}
+
 .clickable-img {
   max-width: 300px;
   aspect-ratio: 1;
   object-fit: cover;
   display:block;
 }
+
+.clickable-img--expanded__container {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  inset: 0;
+  background: rgba(0 0 0 / .4);
+  z-index:100;
+}
+
