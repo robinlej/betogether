@@ -11,157 +11,67 @@ const DashboardStep5 = ({ nextPage, groupProject }) => {
   const groups = [
     {
       groupNumber: 'Group 1',
-      groupProjectTitle: 'My Great Project',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      dbSchemaPic: 'https://unsplash.it/300',
-      projectSketch: 'https://unsplash.it/300',
+      groupProjectTitle: 'The DogBook',
+      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor. Tristique senectus et netus et malesuada fames ac. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Vitae suscipit tellus mauris a diam maecenas sed enim ut. Velit sed ullamcorper morbi tincidunt ornare massa eget. Cursus in hac habitasse platea dictumst quisque sagittis. Sed turpis tincidunt id aliquet. Viverra mauris in aliquam sem fringilla ut morbi tincidunt augue. Viverra mauris in aliquam sem fringilla ut morbi. Mi ipsum faucibus vitae aliquet. Id porta nibh venenatis cras. Vulputate sapien nec sagittis aliquam malesuada. Ut morbi tincidunt augue interdum velit euismod in pellentesque. Morbi leo urna molestie at. In aliquam sem fringilla ut morbi. Nibh ipsum consequat nisl vel pretium lectus quam id leo.
+
+        Nibh ipsum consequat nisl vel pretium. Bibendum enim facilisis gravida neque convallis. Facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Mattis aliquam faucibus purus in massa tempor. Urna id volutpat lacus laoreet non. Sit amet cursus sit amet dictum sit amet justo donec. Adipiscing tristique risus nec feugiat in fermentum posuere. Viverra maecenas accumsan lacus vel facilisis volutpat est velit. Ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan. Suspendisse faucibus interdum posuere lorem ipsum. Egestas dui id ornare arcu odio ut sem. A pellentesque sit amet porttitor eget dolor morbi. Diam maecenas ultricies mi eget mauris pharetra. Eget nullam non nisi est sit amet facilisis. Urna neque viverra justo nec ultrices dui sapien eget mi.
+
+        Elit duis tristique sollicitudin nibh sit. Mauris pellentesque pulvinar pellentesque habitant morbi tristique. Augue neque gravida in fermentum et sollicitudin ac. Pulvinar pellentesque habitant morbi tristique senectus. Eu non diam phasellus vestibulum lorem sed risus ultricies. Cum sociis natoque penatibus et magnis. Luctus accumsan tortor posuere ac ut consequat semper viverra nam. Vitae semper quis lectus nulla. Elit scelerisque mauris pellentesque pulvinar pellentesque. Arcu dui vivamus arcu felis bibendum. Tortor posuere ac ut consequat semper. Quis viverra nibh cras pulvinar mattis nunc sed blandit libero. Scelerisque varius morbi enim nunc. Cursus vitae congue mauris rhoncus.
+
+        Condimentum lacinia quis vel eros donec ac odio. Mattis nunc sed blandit libero volutpat sed. Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Ut pharetra sit amet aliquam id diam maecenas. Maecenas sed enim ut sem viverra aliquet eget sit amet. Netus et malesuada fames ac turpis egestas sed tempus. Ut venenatis tellus in metus vulputate. Adipiscing enim eu turpis egestas pretium aenean pharetra. Luctus accumsan tortor posuere ac ut. In mollis nunc sed id semper risus.`,
+      dbSchemaPic:
+        'https://res.cloudinary.com/georgianam22/image/upload/v1653988995/UserDbSchemaImages/xgy9jsnwmoqxso3wclyg.jpg',
+      projectSketch:
+        'https://res.cloudinary.com/georgianam22/image/upload/v1653988989/UserMockupImages/vimfaq2lgw524lywyxdh.jpg',
       links: '',
       students: [
         {
           name: 'Dylan Burgisser',
           picture:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+            'https://res.cloudinary.com/georgianam22/image/upload/v1653988524/UserProfilePicture/aeg8jcr4qe8dsi8qaexv.jpg',
         },
         {
           name: 'Charlotte Günther',
           picture:
-            'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+            'https://res.cloudinary.com/georgianam22/image/upload/v1653988266/UserProfilePicture/cpfdi4ja5izmov3ffe3n.jpg',
         },
         {
-          name: 'Anthony Hoyas',
+          name: 'Robin Lejeune',
           picture:
-            'https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+            'https://res.cloudinary.com/georgianam22/image/upload/v1653921005/UserProfilePicture/xtbtumb8tvzwworm53ew.jpg',
         },
       ],
     },
     {
       groupNumber: 'Group 2',
-      groupProjectTitle: 'My Amazing Project',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      dbSchemaPic: 'https://unsplash.it/300',
-      projectSketch: 'https://unsplash.it/300',
+      groupProjectTitle: 'Not another cookbook',
+      description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor. Tristique senectus et netus et malesuada fames ac. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Vitae suscipit tellus mauris a diam maecenas sed enim ut. Velit sed ullamcorper morbi tincidunt ornare massa eget. Cursus in hac habitasse platea dictumst quisque sagittis. Sed turpis tincidunt id aliquet. Viverra mauris in aliquam sem fringilla ut morbi tincidunt augue. Viverra mauris in aliquam sem fringilla ut morbi. Mi ipsum faucibus vitae aliquet. Id porta nibh venenatis cras. Vulputate sapien nec sagittis aliquam malesuada. Ut morbi tincidunt augue interdum velit euismod in pellentesque. Morbi leo urna molestie at. In aliquam sem fringilla ut morbi. Nibh ipsum consequat nisl vel pretium lectus quam id leo.
+
+        Nibh ipsum consequat nisl vel pretium. Bibendum enim facilisis gravida neque convallis. Facilisis leo vel fringilla est ullamcorper eget nulla facilisi. Mattis aliquam faucibus purus in massa tempor. Urna id volutpat lacus laoreet non. Sit amet cursus sit amet dictum sit amet justo donec. Adipiscing tristique risus nec feugiat in fermentum posuere. Viverra maecenas accumsan lacus vel facilisis volutpat est velit. Ullamcorper morbi tincidunt ornare massa eget egestas purus viverra accumsan. Suspendisse faucibus interdum posuere lorem ipsum. Egestas dui id ornare arcu odio ut sem. A pellentesque sit amet porttitor eget dolor morbi. Diam maecenas ultricies mi eget mauris pharetra. Eget nullam non nisi est sit amet facilisis. Urna neque viverra justo nec ultrices dui sapien eget mi.
+
+        Elit duis tristique sollicitudin nibh sit. Mauris pellentesque pulvinar pellentesque habitant morbi tristique. Augue neque gravida in fermentum et sollicitudin ac. Pulvinar pellentesque habitant morbi tristique senectus. Eu non diam phasellus vestibulum lorem sed risus ultricies. Cum sociis natoque penatibus et magnis. Luctus accumsan tortor posuere ac ut consequat semper viverra nam. Vitae semper quis lectus nulla. Elit scelerisque mauris pellentesque pulvinar pellentesque. Arcu dui vivamus arcu felis bibendum. Tortor posuere ac ut consequat semper. Quis viverra nibh cras pulvinar mattis nunc sed blandit libero. Scelerisque varius morbi enim nunc. Cursus vitae congue mauris rhoncus.
+
+        Condimentum lacinia quis vel eros donec ac odio. Mattis nunc sed blandit libero volutpat sed. Commodo viverra maecenas accumsan lacus vel facilisis volutpat. Ut pharetra sit amet aliquam id diam maecenas. Maecenas sed enim ut sem viverra aliquet eget sit amet. Netus et malesuada fames ac turpis egestas sed tempus. Ut venenatis tellus in metus vulputate. Adipiscing enim eu turpis egestas pretium aenean pharetra. Luctus accumsan tortor posuere ac ut. In mollis nunc sed id semper risus.`,
+      dbSchemaPic:
+        'https://res.cloudinary.com/georgianam22/image/upload/v1653989427/UserDbSchemaImages/vczkrtqdblvwdywyxnno.jpg',
+      projectSketch:
+        'https://res.cloudinary.com/georgianam22/image/upload/v1653989422/UserMockupImages/pdbid2pynsysho91qnel.jpg',
       links: '',
       students: [
         {
-          name: 'Dylan Burgisser',
+          name: 'Laurent Eyckermans',
           picture:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+            'https://res.cloudinary.com/georgianam22/image/upload/v1653988374/UserProfilePicture/vezdwmxebmbdvditatfg.jpg',
         },
         {
-          name: 'Charlotte Günther',
+          name: 'Georgiana Marcu',
           picture:
-            'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+            'https://res.cloudinary.com/georgianam22/image/upload/v1653992240/UserProfilePicture/ukel3diip7pqk2szyvp2.jpg',
         },
         {
           name: 'Anthony Hoyas',
           picture:
-            'https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        },
-      ],
-    },
-    {
-      groupNumber: 'Group 3',
-      groupProjectTitle: 'My Superb Project',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      dbSchemaPic: 'https://unsplash.it/300',
-      projectSketch: 'https://unsplash.it/300',
-      links: '',
-      students: [
-        {
-          name: 'Dylan Burgisser',
-          picture:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        },
-        {
-          name: 'Charlotte Günther',
-          picture:
-            'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        },
-        {
-          name: 'Anthony Hoyas',
-          picture:
-            'https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        },
-      ],
-    },
-    {
-      groupNumber: 'Group 4',
-      groupProjectTitle: 'My Stunning Project',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      dbSchemaPic: 'https://unsplash.it/300',
-      projectSketch: 'https://unsplash.it/300',
-      links: '',
-      students: [
-        {
-          name: 'Dylan Burgisser',
-          picture:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        },
-        {
-          name: 'Charlotte Günther',
-          picture:
-            'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        },
-        {
-          name: 'Anthony Hoyas',
-          picture:
-            'https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        },
-      ],
-    },
-    {
-      groupNumber: 'Group 5',
-      groupProjectTitle: 'My Gorgeous Project',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      dbSchemaPic: 'https://unsplash.it/300',
-      projectSketch: 'https://unsplash.it/300',
-      links: '',
-      students: [
-        {
-          name: 'Dylan Burgisser',
-          picture:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        },
-        {
-          name: 'Charlotte Günther',
-          picture:
-            'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        },
-        {
-          name: 'Anthony Hoyas',
-          picture:
-            'https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        },
-      ],
-    },
-    {
-      groupNumber: 'Group 6',
-      groupProjectTitle: 'My Terrific Project',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-      dbSchemaPic: 'https://unsplash.it/300',
-      projectSketch: 'https://unsplash.it/300',
-      links: '',
-      students: [
-        {
-          name: 'Dylan Burgisser',
-          picture:
-            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        },
-        {
-          name: 'Charlotte Günther',
-          picture:
-            'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-        },
-        {
-          name: 'Anthony Hoyas',
-          picture:
-            'https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
+            'https://res.cloudinary.com/georgianam22/image/upload/v1653998057/UserProfilePicture/iiypjrljrt2j1er3d2yh.jpg',
         },
       ],
     },

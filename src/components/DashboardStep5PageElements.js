@@ -46,7 +46,7 @@ export const GroupProjectStudentImage = styled.img.attrs(group => ({
   }))`
     object-fit: cover;
     height: 56px;
-    width: 56px;
+    aspect-ratio: 1;
     border-radius:50%;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
 `
