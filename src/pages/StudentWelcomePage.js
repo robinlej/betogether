@@ -79,7 +79,7 @@ function StudentWelcomePage() {
             <WelcomePageProfilePic src={userInfo.profilePicture}></WelcomePageProfilePic>
           </WelcomePageProfileDiv>
           <WelcomePageTitleDiv>
-            <h1>Welcome {`${userInfo.firstName} ${userInfo.lastName}`}</h1>
+            <h1>Welcome {userInfo.firstName}</h1>
             <p> Your coach has started a new group project</p>
             <div>
               <NavLink to="/dashboard">

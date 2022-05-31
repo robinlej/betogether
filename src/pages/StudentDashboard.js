@@ -214,7 +214,7 @@ function StudentDashboard() {
     <>
       <StudentHeader page='dashboard' step={step} />
 
-      <h1>Group Project Name</h1>
+      <h1>Group project #1</h1>
       <SwitchTransition mode='out-in'>
         <CSSTransition
           key={step}

@@ -55,6 +55,8 @@
 }
 
 .dashboard-project-list--item--profile {
+  display:grid;
+  place-items:center;
   text-align: center;
 }
 
