@@ -39,7 +39,7 @@ function StudentDashboard() {
       mode: 'cors',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Token ${token}`,
+        'Authorization': `Token ${token}`,
       },
     })
       .then((response) => response.json())
@@ -67,12 +67,13 @@ function StudentDashboard() {
   // initialize the number of users in the promotion && the projects linked to those users
   useEffect(() => {
     if (userInfo) {
+      console.log('entered useEffect')
       fetch('https://be-together-backend.herokuapp.com/users/all', {
         method: 'GET',
         mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Token ${token}`,
+          'Authorization': `Token ${token}`,
         },
       })
         .then((response) => response.json())
@@ -92,7 +93,7 @@ function StudentDashboard() {
               mode: 'cors',
               headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Token ${token}`,
+                'Authorization': `Token ${token}`,
               },
             }
           )
@@ -115,12 +116,11 @@ function StudentDashboard() {
                 })
                 .filter((item) => item)
 
-              // console.log('projects: ', fetchedProjects)
               setProjects(fetchedProjects)
             })
         })
     }
-  }, [])
+  }, [userInfo])
 
   // if the user was already in the funnel and left the page for some reason, go directly to the step in progress
   // but make this run only on the first render
@@ -132,7 +132,7 @@ function StudentDashboard() {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Token ${token}`,
+            'Authorization': `Token ${token}`,
           },
         }
       )
@@ -154,7 +154,7 @@ function StudentDashboard() {
             setStep(3)
           }
           // not all projects are submitted, but the user already submitted theirs? => step 2
-          else if (projects.some(project => project.user === userInfo.id)) {
+          else if (projects.some(project => project.user.id === userInfo.id)) {
             console.log(2)
             setStep(2)
           }
