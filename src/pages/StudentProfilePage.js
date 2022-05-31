@@ -62,7 +62,7 @@ function StudentProfilePage() {
         <StudentProfileText>
           <h1> My profile</h1>
           <p> Hello {`${userInfo.firstName}`}</p>
-          <p> You are a student in the Johnson 7 promotion</p>
+          <p> You are a student in the {userInfo.promotion.name} promotion</p>
         </StudentProfileText>
         <StudentProfileMainDiv>
           <ProfileImageUpload>

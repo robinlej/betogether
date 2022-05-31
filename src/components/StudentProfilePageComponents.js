@@ -17,7 +17,6 @@ export const ProfileImageUpload = styled.div`
   gap: 16px;
   align-items: center;
   height: 30vh;
-  width: 30vw;
 `
 
 export const StudentProfileText = styled.div`
@@ -56,13 +55,13 @@ export const StudentProfileMainDiv = styled.div`
   justify-content: center;
   align-items: center;
   padding: 2em;
+  gap: 2rem;
 `
 
 export const StudentProfileDetailsReset = styled.div`
   display: flex;
   flex-direction: column;
   color: white;
-  width: 70vw;
 `
 
 export const ChangePassword = styled.div`
