@@ -1,3 +1,5 @@
+import ClickableImage from "./ClickableImage"
+
 const ProjectContent = ({ project, isExpanded }) => {
 
   const description = !isExpanded ? project.description.slice(0, 60) + '...' : project.description
@@ -9,9 +11,9 @@ const ProjectContent = ({ project, isExpanded }) => {
         <p>{description}</p>
         <div className='dashboard-project-list--item--content--imgs'>
           {project.database_schema_picture && (
-            <img src={project.database_schema_picture} />
+            <ClickableImage src={project.database_schema_picture} />
           )}
-          {project.mockup_picture && <img src={project.mockup_picture} />}
+          {project.mockup_picture && <ClickableImage src={project.mockup_picture} />}
         </div>
       </>
     )
