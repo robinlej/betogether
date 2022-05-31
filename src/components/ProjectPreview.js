@@ -6,7 +6,7 @@ const ProjectPreview = ({ project, expandItem, isExpanded, isDraggable }) => {
   const style = isDraggable ? {"cursor": "grab"} : null
 
   useEffect(() => {
-      projectRef.current.style.maxHeight = `calc(${projectRef.current.scrollHeight}px + 2rem`
+    projectRef.current.style.maxHeight = `calc(max(264px, ${projectRef.current.scrollHeight}px) + 2rem)`
   }, [isExpanded])
 
   const expandProject = () => {
