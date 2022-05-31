@@ -55,7 +55,14 @@
 }
 
 .dashboard-project-list--item--profile {
+  display:grid;
+  place-items:center;
   text-align: center;
+}
+
+.dashboard-project-list--item--profile p {
+  width: 10ch;
+  margin-block:auto;
 }
 
 .dashboard-project-list--item--profile-pic {

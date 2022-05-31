@@ -60,3 +60,22 @@ input.invalid {
 .tooltip:hover .tooltip-hover {
   display:block;
 }
+
+.shake {
+  animation: shake .5s linear;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  33% {
+    transform: translateX(7%);
+  }
+  67% {
+    transform: translateX(-7%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

@@ -1,7 +1,11 @@
 const ProjectSelectorItem = ({ project, index }) => {
   return (
     <div className='project-selector-item' draggable>
-      <img src={project.profilePic} />
+      <img src={
+            !project.user.profile_picture
+              ? 'assets/img/user-profile-picture.png'
+              : project.user.profile_picture
+          } />
       <div className='project-selector-item-hover'>{index + 1}</div>
       <div className='project-selector-item--tooltip'>
         <svg
@@ -21,7 +25,7 @@ const ProjectSelectorItem = ({ project, index }) => {
           />
         </svg>
 
-        {project.projectTitle}
+        {project.name}
       </div>
     </div>
   )

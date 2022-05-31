@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState, useEffect } from "react";
 // import { v4 as uuidv4 } from "uuid";
 import StudentHeader from "../components/StudentHeader";
 import {
@@ -17,10 +17,13 @@ import {
 } from "../components/StudentWelcomePageComponents";
 import { UploadBtn } from "../components/StudentProfilePageComponents";
 import { NavLink } from "../components/StudentHeaderElements";
+import { UserContext } from "../App";
+import { HoldSpinner } from "../components/HoldSpinner";
 // import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css/sea-green";
 
 function StudentWelcomePage() {
+  const { token, userInfo } = useContext(UserContext)
   //   const [users, usersSet] = React.useState([]);
 
   //   React.useEffect(() => {
@@ -64,19 +67,19 @@ function StudentWelcomePage() {
   //   },
   // ];
 
-  return (
+  return userInfo ? (
     <>
       <StudentHeader page="welcome" />
       <WelcomePageMainDiv>
         <WelcomePageDiv>
           <WelcomePageProfileDiv>
             <WelcomePagePromotionFlag>
-              <p style={{ fontWeight: "bold" }}>Johnsons 7</p>
+              <p style={{ fontWeight: "bold" }}>{userInfo.promotion?.name}</p>
             </WelcomePagePromotionFlag>
-            <WelcomePageProfilePic></WelcomePageProfilePic>
+            <WelcomePageProfilePic src={userInfo.profilePicture}></WelcomePageProfilePic>
           </WelcomePageProfileDiv>
           <WelcomePageTitleDiv>
-            <h1>Welcome Jane Doe</h1>
+            <h1>Welcome {userInfo.firstName}</h1>
             <p> Your coach has started a new group project</p>
             <div>
               <NavLink to="/dashboard">
@@ -125,7 +128,9 @@ function StudentWelcomePage() {
         </div>
       </WelcomePageMainDiv>
     </>
-  );
+  ) : (
+    <HoldSpinner />
+  )
 }
 
 export default StudentWelcomePage;

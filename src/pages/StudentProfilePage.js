@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import {
   UploadBtn,
   UploadImg,
@@ -8,88 +8,94 @@ import {
   StudentProfileDetailsReset,
   ChangePassword,
   ChangePasswordDiv,
-  ProfilePageMain
+  ProfilePageMain,
 } from "../components/StudentProfilePageComponents";
 import StudentHeader from "../components/StudentHeader";
 import StudentProfileModal from "../components/StudentProfileModal";
-
+import { UserContext } from "../App";
+import { HoldSpinner } from "../components/HoldSpinner";
+import showWidget from "../components/CloudinaryWidget";
 
 function StudentProfilePage() {
-  //   const [users, usersSet] = React.useState([]);
-
-  //   React.useEffect(() => {
-  //     async function fetchUsers() {
-  //       const fullResponse = await fetch('/url');
-  //       const responseJson = await fullResponse.json();
-  //       usersSet(responseJson.data);
-  //     }
-
-  //     fetchUsers();
-  //   }, []);
-
-  // const [email, setEmail] = useState(" ");
+  const [openModal, setOpenModal] = useState(false);
+  const { token, userInfo, setUserInfo } = useContext(UserContext);
   // const [password, setPassword] = useState(" ");
   // const [newpassword, setNewPassword] = useState(" ");
-  const [openModal, setOpenModal] = useState(false);
+  const [picture, setPicture] = useState(" ");
+  const [fallback, setFallback] = useState(false);
 
-  const showWidget = () => {
-    let widget = window.cloudinary.createUploadWidget(
-      {
-        cloudName: `georgianam22`,
-        uploadPreset: `sphkiz4b`,
-      },
-      (error, result) => {
-        if (!error && result && result.event === "success") {
-          console.log(result.info.url);
-        }
-      }
-    );
-    widget.open();
+  let refreshPage = async () => {
+    window.location.reload();
   };
 
-  return (
+  const handleClick = async () => {
+    let profilePicture = await showWidget("UserProfilePicture", token);
+    await setUserInfo({
+      ...userInfo,
+      profilePicture: profilePicture.profile_picture,
+    });
+    await refreshPage();
+  };
+
+  useEffect(() => {
+    if (userInfo) {
+      setPicture(userInfo.profilePicture);
+    }
+  }, [userInfo]);
+
+  const reloadSrc = (e) => {
+    if (fallback) {
+      e.target.src = "assets/img/user-profile-picture.png";
+    } else {
+      e.target.src = picture;
+      setFallback(true);
+    }
+  };
+
+  return userInfo ? (
     <>
-      <StudentHeader page='profile' />
+      <StudentHeader page="profile" />
       <ProfilePageMain>
         <StudentProfileText>
           <h1> My profile</h1>
-          <p> Welcome Jane</p>
+          <p> Hello {`${userInfo.firstName}`}</p>
           <p> You are a student in the Johnson 7 promotion</p>
         </StudentProfileText>
         <StudentProfileMainDiv>
           <ProfileImageUpload>
             <h4>Profile Picture</h4>
             <img
-              src='assets/img/user-profile-picture.png'
-              alt='ProfilePicture'
-              style={{ height: '150px' }}
+              src={picture}
+              onError={reloadSrc}
+              alt="ProfilePicture"
+              style={{ height: "150px" }}
             />
-            <UploadBtn onClick={showWidget}>
+            <UploadBtn onClick={handleClick}>
               <UploadImg></UploadImg>Upload
             </UploadBtn>
           </ProfileImageUpload>
           <StudentProfileDetailsReset>
             <ChangePassword>
-              <form method='POST' action='/'>
+              <form method="POST" action="/">
                 <label>New password</label>
                 <br />
                 <input
-                  name='password'
-                  type='password'
-                  style={{ width: '350px', padding: '1em' }}
+                  name="password"
+                  type="password"
+                  style={{ width: "350px", padding: "1em" }}
                 />
                 <br />
                 <label>Confirm new password</label>
                 <br />
                 <ChangePasswordDiv>
                   <input
-                    name='retype-password'
-                    type='password'
-                    style={{ width: '350px', padding: '1em' }}
+                    name="retype-password"
+                    type="password"
+                    style={{ width: "350px", padding: "1em" }}
                   />
                   <UploadBtn
                     onClick={() => {
-                      setOpenModal(true)
+                      setOpenModal(true);
                     }}
                   >
                     Change password
@@ -102,7 +108,9 @@ function StudentProfilePage() {
         {openModal && <StudentProfileModal CloseModal={setOpenModal} />}
       </ProfilePageMain>
     </>
-  )
+  ) : (
+    <HoldSpinner />
+  );
 }
 
 export default StudentProfilePage;

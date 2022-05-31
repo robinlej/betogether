@@ -6,7 +6,7 @@ const ProjectPreview = ({ project, expandItem, isExpanded, isDraggable }) => {
   const style = isDraggable ? {"cursor": "grab"} : null
 
   useEffect(() => {
-      projectRef.current.style.maxHeight = `calc(${projectRef.current.scrollHeight}px + 2rem`
+    projectRef.current.style.maxHeight = `calc(max(264px, ${projectRef.current.scrollHeight}px) + 2rem)`
   }, [isExpanded])
 
   const expandProject = () => {
@@ -32,10 +32,14 @@ const ProjectPreview = ({ project, expandItem, isExpanded, isDraggable }) => {
       <div className='dashboard-project-list--item--profile'>
         <img
           className='dashboard-project-list--item--profile-pic'
-          src={project.profilePic}
-          alt={`Profile picture of ${project.name}`}
+          src={
+            !project.user.profile_picture
+              ? 'assets/img/user-profile-picture.png'
+              : project.user.profile_picture
+          }
+          alt={`Profile picture of ${project.user.first_name} ${project.user.last_name}`}
         />
-        <p>{project.name}</p>
+        <p>{project.user.first_name + ' ' + project.user.last_name}</p>
       </div>
       <ProjectContent project={project} isExpanded={isExpanded} />
       {isDraggable && dragIcon}

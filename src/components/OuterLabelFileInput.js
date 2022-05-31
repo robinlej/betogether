@@ -1,13 +1,13 @@
 import './stylesheets/OuterLabelInput.css'
 
-const OuterLabelInput = ({ children, name, accept }) => {
+const OuterLabelInput = ({ children, name, accept, value, handleClick }) => {
   return (
     <div className='outer-label-wrap'>
       <label className='outer-label' htmlFor={name}>
         {children}
       </label>
       <div className='outer-label-file-wrap'>
-        <input type='file' name={name} id={name} accept={accept} />
+        <input type='button' name={name} id={name} value={value} accept={accept} onClick={handleClick}/>
       </div>
     </div>
   )
