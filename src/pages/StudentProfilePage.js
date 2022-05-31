@@ -21,7 +21,7 @@ function StudentProfilePage() {
   const { token, userInfo, setUserInfo } = useContext(UserContext);
   // const [password, setPassword] = useState(" ");
   // const [newpassword, setNewPassword] = useState(" ");
-  const [picture, setPicture] = useState(" ");
+  const [picture, setPicture] = useState({profilePicture: "assets/img/user-profile-picture.png"});
   const [fallback, setFallback] = useState(false);
 
   let refreshPage = async () => {
@@ -39,7 +39,10 @@ function StudentProfilePage() {
 
   useEffect(() => {
     if (userInfo) {
-      setPicture(userInfo.profilePicture);
+      setPicture((picture) => ({
+        ...picture,
+        profilePicture: userInfo.profilePicture
+      }));
     }
   }, [userInfo]);
 
@@ -65,7 +68,7 @@ function StudentProfilePage() {
           <ProfileImageUpload>
             <h4>Profile Picture</h4>
             <img
-              src={picture}
+              src={picture.profilePicture}
               onError={reloadSrc}
               alt="ProfilePicture"
               style={{ height: "150px" }}

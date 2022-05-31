@@ -8,6 +8,7 @@
 .outer-label-wrap textarea {
   padding: .8em 1.6em;
   font-size:.9rem;
+  font-family: inherit;
 }
 
 .outer-label {
