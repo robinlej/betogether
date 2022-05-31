@@ -67,7 +67,6 @@ function StudentDashboard() {
   // initialize the number of users in the promotion && the projects linked to those users
   useEffect(() => {
     if (userInfo) {
-      console.log('entered useEffect')
       fetch('https://be-together-backend.herokuapp.com/users/all', {
         method: 'GET',
         mode: 'cors',
@@ -140,26 +139,21 @@ function StudentDashboard() {
         .then((data) => {
           // all the wishlists are submitted? => step 5
           if (data.filter((wishlist) => wishlist.group_project_id === groupProject).length === maxStudents) {
-            console.log(5)
             setStep(5)
           }
           // the user's wishlist is submitted? => step 4
           else if (data.some((wishlist) => wishlist.voted_by === userInfo.id && wishlist.group_project_id === groupProject)) {
-            console.log(4)
             setStep(4)
           } 
           // are all the projects submitted? => step 3
           else if (projects.length >= maxStudents) {
-            console.log(3)
             setStep(3)
           }
           // not all projects are submitted, but the user already submitted theirs? => step 2
           else if (projects.some(project => project.user.id === userInfo.id)) {
-            console.log(2)
             setStep(2)
           }
           else {
-            console.log(1)
             setStep(1)
           }
         })

@@ -6,7 +6,7 @@ const GroupProjectContent = ({ group, isExpanded }) => {
     if (isExpanded) {
       content = (
         <>
-          <p>{group.description}</p>
+          <p style={{ "whiteSpace": "pre-line" }}>{group.description}</p>
           <div
             className='dashboard-project-list--item--content--imgs'
           >

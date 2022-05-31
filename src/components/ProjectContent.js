@@ -2,18 +2,20 @@ import ClickableImage from "./ClickableImage"
 
 const ProjectContent = ({ project, isExpanded }) => {
 
-  const description = !isExpanded ? project.description.slice(0, 60) + '...' : project.description
+  const description = !isExpanded && project.description.length > 60 ? project.description.slice(0, 60) + '...' : project.description
 
   let content
   if (isExpanded) {
     content = (
       <>
-        <p>{description}</p>
+        <p style={{ whiteSpace: 'pre-line' }}>{description}</p>
         <div className='dashboard-project-list--item--content--imgs'>
           {project.database_schema_picture && (
             <ClickableImage src={project.database_schema_picture} />
           )}
-          {project.mockup_picture && <ClickableImage src={project.mockup_picture} />}
+          {project.mockup_picture && (
+            <ClickableImage src={project.mockup_picture} />
+          )}
         </div>
       </>
     )
