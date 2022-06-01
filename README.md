@@ -25,3 +25,14 @@ Georgiana Marcu and Robin Lejeune worked on the frontend (this repo), using **Re
 - Allow students to create a project within a group project (tied to one promotion)
 - Make a wishlist
 - Create groups according to the students' wishlist
+
+## Preview
+
+### Login / Signup page
+![A login / signup form slides from one to the other](public/assets/img/betogether-signup.webp)
+
+### Dashboard, first steps (submit a project)
+![Step 1: add your project, where the user adds a title, a description, a mockup image and a DB schema image. Step 2: wait for everybody to submit their project.](public/assets/img/betogether-step1-3.webp)
+
+### Dashboard, last steps (arrange the vote list and get the resulting groups)
+![Step 3: rearrange the order of the projects with a drag and drop according to the user's wish. The drag and drop occurs in 2 places, linked to each other. Step 4: wait for everybody to vote. Step 5: check the groups formed.](public/assets/img/betogether-step3-5.webp)
