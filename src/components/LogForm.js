@@ -18,7 +18,7 @@ const LogForm = ({ isLogin }) => {
     email:
       /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     password:
-      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*\-]).{8,}$/,
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/,
   }
 
   // const [isSignupSubmitted, setIsSignupSubmitted] = useState(false)
@@ -238,15 +238,12 @@ const LogForm = ({ isLogin }) => {
       >
         Password
         <Tooltip>
-          Passwords must be at least 8 characters long with:
+          Passwords must be at least 6 characters long with:
           <br />
           <ul>
             <li>1 lowercase letter</li>
             <li>1 uppercase letter</li>
             <li>1 number</li>
-            <li>
-              1 special character among <em>#?!@$ %^&*-</em>
-            </li>
           </ul>
         </Tooltip>
       </InnerLabelInput>

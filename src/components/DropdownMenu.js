@@ -9,26 +9,6 @@ const DropdownMenu = ({ children, name, handleOptionChange }) => {
       name: 'johnson7',
       id: 1,
     },
-    {
-      title: 'Hopper 3',
-      name: 'hopper3',
-      id: 2,
-    },
-    {
-      title: 'Lovelace 8',
-      name: 'lovelace8',
-      id: 3,
-    },
-    {
-      title: 'Bouman 4',
-      name: 'bouman4',
-      id: 4,
-    },
-    {
-      title: 'Swartz 6',
-      name: 'swartz6',
-      id: 5,
-    },
   ]
 
   return (
